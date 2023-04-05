@@ -1,0 +1,103 @@
+/***************************Setting colors***************************/ /****************************setting fonts***************************/
+@import url("https://fonts.googleapis.com/css2?family=DM+Sans:wght@700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap");
+/**************************setting text***************************/
+h1 {
+  font-weight: 700;
+  font-size: 36px;
+  font-family: "DM Sans", sans-serif;
+}
+
+.input,
+h2 {
+  font-weight: 400;
+  font-size: 18px;
+}
+
+.item_text_display,
+.dropdown_item {
+  font-weight: 700;
+  font-size: 14px;
+}
+
+.btn,
+.dropdown_input,
+.time_display {
+  font-weight: 700;
+  font-size: 18px;
+}
+
+.ingredient {
+  font-weight: 400;
+  font-size: 12px;
+}
+
+.bold {
+  font-weight: 700;
+  font-size: 12px;
+}
+
+/*************************Setting mixin************************/ /***************************************************************/
+/*setting*/
+/***************************************************************/
+/*************************Setting page**************************/
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  list-style-type: none;
+  margin-block: 0;
+  outline: none;
+  font-family: "Lato", sans-serif;
+}
+
+body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  max-width: 1450px;
+  text-align: left;
+  margin: 0 auto;
+}
+
+button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 170px;
+  height: 69px;
+  border-radius: 5px;
+}
+
+/*************Text link & img fit & icone color***************/
+a,
+a:visited {
+  color: black;
+  text-decoration: none;
+}
+
+/*************************breakup**************************/
+/*
+$breakup-tablette: 650px;
+$breakup-desktop: 1060px;*/
+/**********************************************************************/
+/*header*/
+/**********************************************************************/
+header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  margin-top: 50px;
+}
+header h1 {
+  color: #d04f4f;
+}
+
+/**********************************************************************/
+/*Main*/
+/**********************************************************************/
+/**********************************************************************/
+/*footer*/
+/**********************************************************************//*# sourceMappingURL=index.css.map */

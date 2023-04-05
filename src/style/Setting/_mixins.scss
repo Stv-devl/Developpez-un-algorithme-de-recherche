@@ -1,0 +1,36 @@
+/*************************Setting mixin************************/
+@mixin center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@mixin centerleft {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+@mixin center-row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+@mixin center-column {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+@mixin direction-row {
+  display: flex;
+  flex-direction: row;
+}
+
+@mixin direction-column {
+  display: flex;
+  flex-direction: column;
+}
