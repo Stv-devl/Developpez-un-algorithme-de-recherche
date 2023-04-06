@@ -1,3 +1,145 @@
 /**********************************************************************/
 /*Main*/
 /**********************************************************************/
+main {
+  width: 100%;
+
+  .search_form {
+    width: 100%;
+
+    .input_wrapper {
+      position: relative;
+      .input {
+        width: 100%;
+        height: 69px;
+        padding-left: 24px;
+        background-color: $inputBackgroundGrey;
+        border: none;
+        border-radius: 5px;
+      }
+      .search_icone {
+        position: absolute;
+        font-size: 32px;
+        top: 20px;
+        right: 20px;
+        cursor: pointer;
+      }
+    }
+
+    .display_filter_item {
+      @include direction-row;
+
+      gap: 20px;
+
+      .filter_item_wrapper {
+        @include center-row;
+        gap: 12px;
+        height: 37px;
+        padding: 0 20px;
+        background-color: $filterBackgroundBlue;
+        border-radius: 5px;
+        margin: 25px 0 15px 0;
+
+        .item_text_display {
+          color: $whiteText;
+        }
+
+        .item_logo {
+          font-size: 20px;
+          color: $whiteText;
+          cursor: pointer;
+        }
+      }
+    }
+  }
+  .menu_dropdown {
+    @include row;
+    gap: 20px;
+    margin-bottom: 25px;
+
+    .dropdown_container {
+      position: relative;
+      color: $whiteText;
+
+      .btn {
+        color: $whiteText;
+        cursor: pointer;
+      }
+
+      .ingredient_dropdown_btn {
+        background-color: $filterBackgroundBlue;
+      }
+
+      .material_dropdown_btn {
+        background-color: $filterBackgroundGreen;
+      }
+
+      .utensil_dropdown_btn {
+        background-color: $filterBackgroundRed;
+      }
+
+      .dropdown_icone {
+        position: absolute;
+        top: 27px;
+        right: 20px;
+        cursor: pointer;
+      }
+
+      .dropdown_input {
+        display: none;
+      }
+      .item_list {
+        display: none;
+      }
+    }
+  }
+  .menus_cards {
+    display: grid;
+    grid-template-columns: 31% 31% 31%;
+    column-gap: 3.5%;
+    row-gap: 50px;
+
+    article {
+      width: 100%;
+      height: 364px;
+
+      .futur_picture {
+        height: 49%;
+        background-color: $imageBackgroundGrey;
+        border-radius: 5px 5px 0 0;
+      }
+      .receipt_container {
+        height: 51%;
+        background-color: $menuCardBackgroundGrey;
+        border-radius: 0 0 5px 5px;
+        padding: 20px 20px 0 20px;
+
+        .title_wrapper {
+          @include row;
+          justify-content: space-between;
+          margin-bottom: 20px;
+
+          .time_wrapper {
+            @include center-row;
+            gap: 5px;
+          }
+        }
+        .receipt_wrapper {
+          @include row;
+          justify-content: space-between;
+          gap: 10px;
+
+          .ingredient_wrapper {
+            display: flex;
+            flex-direction: column;
+            gap: 1px;
+          }
+
+          .menu_description {
+            width: 170px;
+          }
+        }
+      }
+    }
+  }
+}

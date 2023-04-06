@@ -27,43 +27,50 @@
             <div class="input_wrapper">
                 <input class="input" type="text" autocomplete="off" id="search" placeholder="Rechercher une recette"
                     name="research" aria-label="research bar ">
-                <i class="fa-sharp fa-solid fa-magnifying-glass"></i>
+                <i class="fa-sharp fa-solid fa-magnifying-glass search_icone"></i>
             </div>
             <span id="research_error"></span>
         </form>
         <div class="display_filter_item">
+
             <div class="filter_item_wrapper">
-                <div>
-                    <p class="item_text_display">Coco</p>
-                    <i class="fa-regular fa-circle-xmark"></i>
-                </div>
+                <p class="item_text_display">Coco</p>
+                <i class="fa-regular fa-circle-xmark item_logo"></i>
+            </div>
+            <div class="filter_item_wrapper">
+                <p class="item_text_display">Moutarde de Dijon</p>
+                <i class="fa-regular fa-circle-xmark item_logo"></i>
+            </div>
+            <div class="filter_item_wrapper">
+                <p class="item_text_display">Sucre en Poudre</p>
+                <i class="fa-regular fa-circle-xmark item_logo"></i>
             </div>
         </div>
     </section>
 
     <section class="menu_dropdown">
-        <div class="ingredient_dropdown">
+        <div class="ingredient_dropdown dropdown_container">
             <button class="ingredient_dropdown_btn btn">Ingredients</button>
             <input class="ingredient_dropdown_input dropdown_input" placeholder="Rechercher un ingrédient">
-            <i class="fa-solid fa-chevron-down" aria-hidden="true"></i>
-            <ul class="dropdown_ingredient_list">
+            <i class="fa-solid fa-chevron-down dropdown_icone" aria-hidden="true"></i>
+            <ul class="dropdown_ingredient_list item_list">
                 <li class="dropdown_ingredient_item dropdown_item">Lait</li>
             </ul>
         </div>
-        <div class="material_dropdown">
+        <div class="material_dropdown dropdown_container">
             <button class="material_dropdown_btn btn">Appareils</button>
             <input class="material_dropdown_input dropdown_input" placeholder="Rechercher un appareil">
-            <i class="fa-solid fa-chevron-down" aria-hidden="true"></i>
-            <ul class="dropdown_material_list">
+            <i class="fa-solid fa-chevron-down dropdown_icone" aria-hidden="true"></i>
+            <ul class="dropdown_material_list item_list">
                 <li class="dropdown_material_item dropdown_item">four</li>
             </ul>
         </div>
         </div>
-        <div class="utensil_dropdown">
+        <div class="utensil_dropdown dropdown_container">
             <button class="utensil_dropdown_btn btn">Ustensiles</button>
             <input class="utensil_dropdown_input dropdown_input" placeholder="Rechercher un appareil">
-            <i class="fa-solid fa-chevron-down" aria-hidden="true"></i>
-            <ul class="dropdown_utensil_list">
+            <i class="fa-solid fa-chevron-down dropdown_icone" aria-hidden="true"></i>
+            <ul class="dropdown_utensil_list item_list">
                 <li class="dropdown_utensil_item dropdown_item">couteau</li>
             </ul>
         </div>
@@ -80,20 +87,26 @@
                         <i class="fa-regular fa-clock"></i>
                         <p class="time_display">10 min</p>
                     </div>
-                    <div class="receipt_container">
-                        <div class="ingredient_wrapper">
-                            <p class="ingredient"><span class="bold">Lait de coco:</span>400ml</p>
-                            <p class="ingredient"><span class="bold">Jus de citron:</span>2l</p>
-                            <p class="ingredient"><span class="bold">Crème de coco:</span>4 cuillères</p>
-                            <p class="ingredient"><span class="bold">Sucre:</span>20g</p>
-                            <p class="ingredient"><span class="bold">Glaçons:</span>2</p>
-                        </div>
-                        <p class="menu_description">
-                        </p>
+                </div>
+                <div class="receipt_wrapper">
+                    <div class="ingredient_wrapper">
+                        <p class="ingredient"><span class="bold">Lait de coco:</span>400ml</p>
+                        <p class="ingredient"><span class="bold">Jus de citron:</span>2l</p>
+                        <p class="ingredient"><span class="bold">Crème de coco:</span>4 cuillères</p>
+                        <p class="ingredient"><span class="bold">Sucre:</span>20g</p>
+                        <p class="ingredient"><span class="bold">Glaçons:</span>2</p>
                     </div>
+                    <p class="menu_description">
+                        Mettre les glaçons à votre goût dans le blender, ajouter le lait, la crème de coco, le jus de 2
+                        citrons et le sucre. Mixer jusqu'à avoir la consistence désirée.
+                    </p>
                 </div>
             </div>
+            </div>
         </article>
+
+
+
 
     </section>
 </main>

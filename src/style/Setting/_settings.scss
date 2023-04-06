@@ -15,15 +15,18 @@
 body {
   @include center;
   flex-direction: column;
+  width: 90%;
   max-width: 1450px;
   text-align: left;
   margin: 0 auto;
 }
 
 button {
-  @include center;
+  text-align: left;
   width: 170px;
   height: 69px;
+  padding-left: 20px;
+  border: none;
   border-radius: 5px;
 }
 
