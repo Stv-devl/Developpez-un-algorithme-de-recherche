@@ -53,16 +53,14 @@
             <button class="ingredient_dropdown_btn btn">Ingredients</button>
             <input class="ingredient_dropdown_input dropdown_input" placeholder="Rechercher un ingrédient">
             <i class="fa-solid fa-chevron-down dropdown_icone" aria-hidden="true"></i>
-            <ul class="dropdown_ingredient_list item_list">
-                <li class="dropdown_ingredient_item dropdown_item">Lait</li>
+            <ul class="dropdown_ingredient_list item_list" id="ingredientItem">
             </ul>
         </div>
         <div class="material_dropdown dropdown_container">
             <button class="material_dropdown_btn btn">Appareils</button>
             <input class="material_dropdown_input dropdown_input" placeholder="Rechercher un appareil">
             <i class="fa-solid fa-chevron-down dropdown_icone" aria-hidden="true"></i>
-            <ul class="dropdown_material_list item_list">
-                <li class="dropdown_material_item dropdown_item">four</li>
+            <ul class="dropdown_material_list item_list" id="deviceItem">
             </ul>
         </div>
         </div>
@@ -70,14 +68,34 @@
             <button class="utensil_dropdown_btn btn">Ustensiles</button>
             <input class="utensil_dropdown_input dropdown_input" placeholder="Rechercher un appareil">
             <i class="fa-solid fa-chevron-down dropdown_icone" aria-hidden="true"></i>
-            <ul class="dropdown_utensil_list item_list">
-                <li class="dropdown_utensil_item dropdown_item">couteau</li>
+            <ul class="dropdown_utensil_list item_list" id="ustensilItem">
             </ul>
         </div>
     </section>
 
     <section class="menus_cards">
+    </section>
+</main>
+<!-- Api -->
+<script type="module" src="./src/script/api/api.js"></script>
+<!-- Pages -->
+<script type="module" src="./src/script/page/index.js"></script>
+<!-- Filter -->
+<script type="module" src="./src/script/filter/keepdata.js"></script>
+<!-- templates -->
+<script type="module" src="./src/script/template/menuCardTemplate.js"></script>
+<script type="module" src="./src/script/template/ingredientCardTemplate.js"></script>
+<!-- utils -->
+<script type="module" src="./src/script/utils/dropdown.js"></script>
 
+<body>
+
+</body>
+
+</html>
+
+
+<!-- 
         <article>
             <div class="futur_picture"></div>
             <div class="receipt_container">
@@ -104,19 +122,4 @@
             </div>
             </div>
         </article>
-
-
-
-
-    </section>
-</main>
-<!-- Api -->
-<script type="module" src="./src/script/api/api.js"></script>
-<!-- Pages -->
-<script type="module" src="./src/script/page/index.js"></script>
-
-<body>
-
-</body>
-
-</html>
+   -->

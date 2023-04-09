@@ -14,10 +14,10 @@ class Api {
   }
 }
 
-class menuApi extends Api {
+class MenuApi extends Api {
   constructor(url) {
     super(url);
   }
 }
 
-export default menuApi;
+export default MenuApi;

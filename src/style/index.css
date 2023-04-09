@@ -28,7 +28,7 @@ h2 {
   font-size: 18px;
 }
 
-.ingredient {
+.ingredients {
   font-weight: 400;
   font-size: 12px;
 }
@@ -191,6 +191,9 @@ main .menu_dropdown .dropdown_container .dropdown_input {
 main .menu_dropdown .dropdown_container .item_list {
   display: none;
 }
+main .menu_dropdown .dropdown_container .active {
+  display: block;
+}
 main .menus_cards {
   display: grid;
   grid-template-columns: 31% 31% 31%;
@@ -203,21 +206,23 @@ main .menus_cards article {
   height: 364px;
 }
 main .menus_cards article .futur_picture {
-  height: 49%;
+  height: 48%;
   background-color: #c7bebe;
   border-radius: 5px 5px 0 0;
 }
 main .menus_cards article .receipt_container {
-  height: 51%;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  height: 52%;
   background-color: #e7e7e7;
   border-radius: 0 0 5px 5px;
-  padding: 20px 20px 0 20px;
+  padding: 18px 20px 18px 20px;
 }
 main .menus_cards article .receipt_container .title_wrapper {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  margin-bottom: 20px;
 }
 main .menus_cards article .receipt_container .title_wrapper .time_wrapper {
   display: flex;
@@ -230,15 +235,24 @@ main .menus_cards article .receipt_container .receipt_wrapper {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  gap: 10px;
+  overflow: hidden;
 }
 main .menus_cards article .receipt_container .receipt_wrapper .ingredient_wrapper {
   display: flex;
   flex-direction: column;
   gap: 1px;
 }
+main .menus_cards article .receipt_container .receipt_wrapper .ingredient_wrapper .ingredientList {
+  display: flex;
+  flex-direction: row;
+  gap: 2px;
+}
 main .menus_cards article .receipt_container .receipt_wrapper .menu_description {
-  width: 170px;
+  width: 150px;
+  display: -webkit-box;
+  -webkit-line-clamp: 7;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 
 /**********************************************************************/
