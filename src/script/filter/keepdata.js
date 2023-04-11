@@ -33,11 +33,16 @@ class KeepData {
     //keep devices in array
     this.devices = ["Cocotte minute", "Plaque de cuisson", "Poêle à frire"];
     this.ingredientsListArray = [];
+    this.allElementListArray = [];
   }
+
+  //keep ingredient in array
   async getData() {
     const { menus } = await this.dataApi.get();
+
     //filter ingredients
     const filterAllIngredient = menus.map((data) => data.ingredients);
+
     //Get an array with the list of ingredients => flatmap for get all array in 1, filter is for delete repeat elements, sort for list ingredients in alphabet order
     this.ingredientsListArray = filterAllIngredient
       .flatMap((current) => current.map((data) => data.ingredient))
