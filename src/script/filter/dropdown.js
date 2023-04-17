@@ -1,5 +1,5 @@
 //filter
-import KeepData from "../filter/keepdata.js";
+import DropDownCard from "../template/dropDownCardTemplate.js";
 
 //Class for open drowpdown
 class DropDown {
@@ -7,71 +7,53 @@ class DropDown {
     this.buttons = document.querySelectorAll(".btn");
     this.dropdownInputs = document.querySelectorAll(".dropdown_input");
     this.ingredientLists = document.querySelectorAll(".item_list");
-    //
     this.ingredientList = document.querySelector(".dropdown_ingredient_list");
     this.deviceList = document.querySelector(".dropdown_material_list");
     this.utensilList = document.querySelector(".dropdown_utensil_list");
+    this.keepdata = new KeepData();
+    this.menuList = [];
+    this.itemlist;
+    this.containerList;
   }
 
-  //drowpDown display lists of ingredients, ustensil and devices.
-  async dropDownDisplay(dropdownInput, dropdownList) {
-    //launch KeepData Class for get all array, launch getData for get the array from APi.
-    const keepdata = new KeepData();
-    await keepdata.getData();
-    //itemList for get ingredients, ustensils or devices list
-    let itemlist;
-    let containerList;
-
-    //change itemlist and containerList in function of which "dropdownList" is selected
-    switch (dropdownList.id) {
-      case "ingredientItem":
-        containerList = this.ingredientList;
-        itemlist = keepdata.ingredientsListArray;
-        break;
-      case "deviceItem":
-        containerList = this.deviceList;
-        itemlist = keepdata.devices;
-        break;
-      case "ustensilItem":
-        containerList = this.utensilList;
-        itemlist = keepdata.ustensils;
-        break;
-    }
-    // If have no already <li>, For each "itemList" element create <li> and display item value in the "containerList"
-    if (containerList.childElementCount === 0) {
-      itemlist.forEach((item) => {
-        const dropdownItem = document.createElement("li");
-        dropdownItem.setAttribute(
-          "class",
-          "dropdown_ingredient_item dropdown_item"
+  // If have no already <li>, For each "itemList" element create <li> and display item value in the "containerList"
+  dropDownDisplay() {
+    if (this.containerList.childElementCount === 0) {
+      this.itemlist.forEach((item) => {
+        const dropdownCardTemplate = new DropDownCard(item);
+        this.containerList.appendChild(
+          dropdownCardTemplate.dropDownDisplayDom()
         );
-        dropdownItem.innerHTML = item;
-        containerList.appendChild(dropdownItem);
       });
     } else return;
   }
-
   //at click on each button launch closePopup or openPopup
-  ingredientDropDown() {
+  ingredientDropDown(menus) {
+    this.menuList = menus;
     this.buttons.forEach((button) => {
-      button.addEventListener("click", () => {
-        const dropdownInput = button.parentElement.children[1];
+      button.addEventListener("click", (e) => {
+        const dropdownInput = button.nextElementSibling;
         const dropdownList = button.parentElement.children[3];
+
         if (
           dropdownInput.classList.contains("active") &&
           dropdownList.classList.contains("active")
-        )
-          return this.closePopup(dropdownInput, dropdownList);
-        else return this.openPopup(dropdownInput, dropdownList);
+        ) {
+          this.closePopup(dropdownInput, dropdownList);
+        } else {
+          this.filterItemArray(dropdownList);
+          this.openPopup(dropdownInput, dropdownList);
+        }
       });
     });
   }
-  //when we open the popup the dropwdonw search input and the drowdown ingredient list will be active. Launch getData
+
+  //when we open the popup the dropwdown search input and the drowdown ingredient list will be active. Launch getData
   openPopup(dropdownInput, dropdownList) {
     dropdownInput.classList.add("active");
     dropdownList.classList.add("active");
-    this.dropDownDisplay(dropdownInput, dropdownList);
   }
+
   //when we close the popup the dropwdown search input and the drowdown ingredient we remove active.Launch getData
   closePopup(dropdownInput, dropdownList) {
     dropdownInput.classList.remove("active");

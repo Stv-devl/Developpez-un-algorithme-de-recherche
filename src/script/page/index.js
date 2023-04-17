@@ -1,7 +1,6 @@
 //api
 import MenuApi from "../api/api.js";
 //filter
-import DropDown from "../filter/dropdown.js";
 import FilterSearch from "../filter/searchv1.js";
 //template
 import MenuCard from "../template/menuCardTemplate.js";
@@ -16,27 +15,24 @@ class App {
     this.filteredMenus = [];
   }
 
-  //Get data from APY
+  //Get data from APY, array this.menus and this.filteredMenus implemented with data.
   async sendData() {
     const { menus } = await this.dataApi.get();
-    this.menus = menus;
     this.filteredMenus = menus;
-    this.displayMenu();
 
+    //launch the filter
     const filtersearch = new FilterSearch();
-    filtersearch.launchFilter();
+    filtersearch.launchFilter(menus);
   }
 
-  setMenuFilteredChoice(filteredMenus, menus, value) {
-    if (value.length >= 3) {
+  //We get return from filter and launch the display.
+  async launchingFiltered(filteredMenus) {
+    if (filteredMenus) {
       this.filteredMenus = filteredMenus;
-    } else {
-      this.filteredMenus = menus;
-    }
-    this.displayMenu();
+      this.displayMenu();
+    } else return;
   }
-
-  //Send filtred elements to dom template
+  //Send filtred elements to DOM template
   displayMenu() {
     //deletes articles create when we launch the function
     this.menusCards.innerHTML = "";
@@ -57,16 +53,61 @@ class App {
     });
   }
 }
-export default App;
 
+//Class for open drowpdown
+class DropDown {
+  constructor() {
+    this.buttons = document.querySelectorAll(".btn");
+    this.dropdownInputs = document.querySelectorAll(".dropdown_input");
+    this.ingredientLists = document.querySelectorAll(".item_list");
+    this.ingredientList = document.querySelector(".dropdown_ingredient_list");
+    this.deviceList = document.querySelector(".dropdown_material_list");
+    this.utensilList = document.querySelector(".dropdown_utensil_list");
+    this.menuList = [];
+    this.itemlist;
+    this.containerList;
+  }
+
+  //at click on each button launch closePopup or openPopup
+  ingredientDropDown() {
+    this.buttons.forEach((button) => {
+      button.addEventListener("click", (e) => {
+        const dropdownInput = button.nextElementSibling;
+        const dropdownList = button.parentElement.children[3];
+
+        if (
+          dropdownInput.classList.contains("active") &&
+          dropdownList.classList.contains("active")
+        ) {
+          this.closePopup(dropdownInput, dropdownList);
+        } else {
+          this.openPopup(dropdownInput, dropdownList);
+        }
+      });
+    });
+  }
+  //when we open the popup the dropwdown search input and the drowdown ingredient list will be active. Launch getData
+  openPopup(dropdownInput, dropdownList) {
+    dropdownInput.classList.add("active");
+    dropdownList.classList.add("active");
+  }
+  //when we close the popup the dropwdown search input and the drowdown ingredient we remove active.Launch getData
+  closePopup(dropdownInput, dropdownList) {
+    dropdownInput.classList.remove("active");
+    dropdownList.classList.remove("active");
+  }
+}
+
+//launch App class and data function
 function init() {
-  //activate the class
+  //launch App class and fonction
   const app = new App();
-  const dropdown = new DropDown();
-
-  //launch the function
   app.sendData();
+  //launch the dropdown
+  const dropdown = new DropDown();
   dropdown.ingredientDropDown();
 }
 
 init();
+
+export default App;

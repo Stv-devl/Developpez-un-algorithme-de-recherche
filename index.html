@@ -10,7 +10,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
         integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
-
     <title>Les petits plats</title>
 </head>
 <header>
@@ -25,48 +24,38 @@
     <section class="search_form">
         <form action="">
             <div class="input_wrapper">
-                <input class="input" type="text" autocomplete="off" id="search" placeholder="Rechercher une recette"
-                    name="research" aria-label="research bar ">
+                <input class="input" type="text" id="search" placeholder="Rechercher une recette" name="research"
+                    aria-label="research bar ">
                 <i class="fa-sharp fa-solid fa-magnifying-glass search_icone"></i>
             </div>
             <span id="research_error"></span>
         </form>
-        <div class="display_filter_item">
 
-            <div class="filter_item_wrapper">
-                <p class="item_text_display">Coco</p>
-                <i class="fa-regular fa-circle-xmark item_logo"></i>
-            </div>
-            <div class="filter_item_wrapper">
-                <p class="item_text_display">Moutarde de Dijon</p>
-                <i class="fa-regular fa-circle-xmark item_logo"></i>
-            </div>
-            <div class="filter_item_wrapper">
-                <p class="item_text_display">Sucre en Poudre</p>
-                <i class="fa-regular fa-circle-xmark item_logo"></i>
-            </div>
+        <div class="display_filter_item">
         </div>
     </section>
 
     <section class="menu_dropdown">
         <div class="ingredient_dropdown dropdown_container">
-            <button class="ingredient_dropdown_btn btn">Ingredients</button>
-            <input class="ingredient_dropdown_input dropdown_input" placeholder="Rechercher un ingrédient">
+            <button type="button" class="ingredient_dropdown_btn btn" id="ingredientBtn">Ingredients</button>
+            <input type="text" class="ingredient_dropdown_input dropdown_input" id="inputIngredient"
+                placeholder="Rechercher un ingrédient">
             <i class="fa-solid fa-chevron-down dropdown_icone" aria-hidden="true"></i>
             <ul class="dropdown_ingredient_list item_list" id="ingredientItem">
             </ul>
         </div>
         <div class="material_dropdown dropdown_container">
-            <button class="material_dropdown_btn btn">Appareils</button>
-            <input class="material_dropdown_input dropdown_input" placeholder="Rechercher un appareil">
+            <button type="button" class="material_dropdown_btn btn" id="deviceBtn">Appareils</button>
+            <input class="material_dropdown_input dropdown_input" id="inputDevice" placeholder="Rechercher un appareil">
             <i class="fa-solid fa-chevron-down dropdown_icone" aria-hidden="true"></i>
             <ul class="dropdown_material_list item_list" id="deviceItem">
             </ul>
         </div>
         </div>
         <div class="utensil_dropdown dropdown_container">
-            <button class="utensil_dropdown_btn btn">Ustensiles</button>
-            <input class="utensil_dropdown_input dropdown_input" placeholder="Rechercher un appareil">
+            <button type="button" class="utensil_dropdown_btn btn" id="deviceBtn">Ustensiles</button>
+            <input class="utensil_dropdown_input dropdown_input" id="inputUstensil"
+                placeholder="Rechercher un appareil">
             <i class="fa-solid fa-chevron-down dropdown_icone" aria-hidden="true"></i>
             <ul class="dropdown_utensil_list item_list" id="ustensilItem">
             </ul>
@@ -79,15 +68,13 @@
 <!-- Api -->
 <script type="module" src="./src/script/api/api.js"></script>
 <!--filter-->
-<script type="module" src="./src/script/filter/dropdown.js"></script>
 <script type="module" src="./src/script/filter/searchv1.js"></script>
 <!-- Pages -->
 <script type="module" src="./src/script/page/index.js"></script>
-<!-- Filter -->
-<script type="module" src="./src/script/filter/keepdata.js"></script>
 <!-- templates -->
 <script type="module" src="./src/script/template/menuCardTemplate.js"></script>
 <script type="module" src="./src/script/template/ingredientCardTemplate.js"></script>
+<script type="module" src="./src/script/template/dropDownCardTemplate.js"></script>
 
 
 <body>
@@ -95,33 +82,3 @@
 </body>
 
 </html>
-
-
-<!-- 
-        <article>
-            <div class="futur_picture"></div>
-            <div class="receipt_container">
-                <div class="title_wrapper">
-                    <h2>Limonade de Coco</h2>
-                    <div class="time_wrapper">
-                        <i class="fa-regular fa-clock"></i>
-                        <p class="time_display">10 min</p>
-                    </div>
-                </div>
-                <div class="receipt_wrapper">
-                    <div class="ingredient_wrapper">
-                        <p class="ingredient"><span class="bold">Lait de coco:</span>400ml</p>
-                        <p class="ingredient"><span class="bold">Jus de citron:</span>2l</p>
-                        <p class="ingredient"><span class="bold">Crème de coco:</span>4 cuillères</p>
-                        <p class="ingredient"><span class="bold">Sucre:</span>20g</p>
-                        <p class="ingredient"><span class="bold">Glaçons:</span>2</p>
-                    </div>
-                    <p class="menu_description">
-                        Mettre les glaçons à votre goût dans le blender, ajouter le lait, la crème de coco, le jus de 2
-                        citrons et le sucre. Mixer jusqu'à avoir la consistence désirée.
-                    </p>
-                </div>
-            </div>
-            </div>
-        </article>
-   -->
