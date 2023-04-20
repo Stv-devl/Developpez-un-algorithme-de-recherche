@@ -15,9 +15,9 @@ class FilterSearch {
     this.ingredientList = []; // array for ingredient tag
     this.deviceList = []; //array for device
     this.ustensilList = []; //array for ustensil
-    this.itemInputValue = ""; //to keep input data
+    this.itemInputValue = "";
     this.searchInputValue = ""; //to keep input data
-    this.itemChoice; //for selected the input user is writing
+    this.itemChoice; //for sezlected the input user is writing
     this.app = new App(); //activate App class from index.js
     this.dropdowncard = new DropDownCard(); //activate DropDownCard class from template
   }
@@ -25,6 +25,7 @@ class FilterSearch {
   searchFilter() {
     //If we write in the inputs of the tags and the search bar is <3 characters. Then we launch the filterWithItemInput() function which will filter the secondary tables: ingredients, devices, ustensils, according to what we write in the input. We send the information in the template to display it in the dom. We listen to the events when the tags are clicked. The filter on the secondary tables is not saved if you do not click on a tag.
     if (this.itemInputValue.length >= 1 && this.searchInputValue.length < 3) {
+      this.launchMethodeFilter(); //for filter previous input
       this.filterWithItemInput();
       this.dropdowncard.elementListDisplay(
         this.ingredientList,
@@ -47,6 +48,7 @@ class FilterSearch {
       this.closeItemLogo();
     }
     //if we click on one of the tags and nothing is written in the search input then we launch the filteredWitchClickedArray() method which will filter this.filteredList according to the tag clicked. Then we launch the launchItemFilter() function which manages the filter and their display in the dom.
+
     if (
       this.filterClickedElement.length > 0 &&
       this.itemInputValue.length === 0
@@ -189,24 +191,32 @@ class FilterSearch {
   listenItemInput() {
     inputIngredient.addEventListener("input", (e) => {
       this.itemInputValue = e.target.value;
-      inputDevice.value = "";
-      inputUstensil.value = "";
       this.itemChoice = "ingredient";
       this.searchFilter();
     });
     inputDevice.addEventListener("input", (e) => {
       this.itemInputValue = e.target.value;
-      inputUstensil.value = "";
-      inputIngredient.value = "";
       this.itemChoice = "device";
       this.searchFilter();
     });
     inputUstensil.addEventListener("input", (e) => {
       this.itemInputValue = e.target.value;
-      inputDevice.value = "";
-      inputIngredient.value = "";
       this.itemChoice = "ustensil";
       this.searchFilter();
+    });
+
+    inputIngredient.addEventListener("focus", () => {
+      console.log("ça marche");
+      inputDevice.value = "";
+      inputUstensil.value = "";
+    });
+    inputDevice.addEventListener("focus", () => {
+      inputIngredient.value = "";
+      inputUstensil.value = "";
+    });
+    inputUstensil.addEventListener("focus", () => {
+      inputIngredient.value = "";
+      inputDevice.value = "";
     });
   }
 
@@ -220,6 +230,7 @@ class FilterSearch {
         //deletes inputs values when we click
         dropdownInput.forEach((input) => {
           input.value = "";
+          this.itemInputValue = input.value;
         });
 
         if (!this.filterClickedElement.includes(item)) {
