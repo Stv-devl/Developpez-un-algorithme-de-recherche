@@ -79,45 +79,81 @@ main {
     gap: 20px;
     margin: 20px 0 25px 0;
 
-    .dropdown_container {
-      position: relative;
-      color: $whiteText;
+    .ingredient_container {
+      background-color: $filterBackgroundBlue;
+    }
 
-      .btn {
-        color: $whiteText;
+    .material_container {
+      background-color: $filterBackgroundGreen;
+    }
+
+    .utensil_container {
+      background-color: $filterBackgroundRed;
+    }
+
+    .dropbox_container {
+      position: relative;
+      width: 170px;
+      height: 69px;
+      padding: 0 20px;
+      border-radius: 5px;
+
+      .dropbox_wrapper {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
         cursor: pointer;
+
+        .dropdown_input {
+          width: 100px;
+          height: 69px;
+          color: $whiteText;
+          background: none;
+          border: none;
+
+          &::placeholder {
+            color: $whiteText;
+          }
+        }
+        .dropdown_icone {
+          top: 27px;
+          color: $whiteText;
+          cursor: pointer;
+        }
       }
 
-      .ingredient_dropdown_btn {
+      .item_list {
+        display: none;
+      }
+    }
+    //interact with js
+    .dropbox_container.active {
+      width: 40%;
+      border-radius: 5px 5px 0 0;
+
+      .dropdown_ingredient_list {
         background-color: $filterBackgroundBlue;
       }
 
-      .material_dropdown_btn {
+      .dropdown_material_list {
         background-color: $filterBackgroundGreen;
       }
-
-      .utensil_dropdown_btn {
+      .dropdown_utensil_list {
         background-color: $filterBackgroundRed;
       }
 
-      .dropdown_icone {
-        position: absolute;
-        top: 27px;
-        right: 20px;
-        cursor: pointer;
-      }
-
-      .dropdown_input {
-        display: none;
-      }
       .item_list {
-        display: none;
+        position: absolute;
+        width: 100%;
+        left: 0;
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        column-gap: 20px;
+        row-gap: 10px;
+        color: $whiteText;
+        padding: 10px 20px 10px 20px;
+        border-radius: 0 0 5px 5px;
         cursor: pointer;
-        z-index: 5;
-      }
-
-      .active {
-        display: block;
       }
     }
   }

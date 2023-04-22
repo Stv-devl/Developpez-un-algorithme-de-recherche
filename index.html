@@ -27,7 +27,7 @@
             <form action="#">
                 <div class="input_wrapper">
                     <input class="input" type="text" id="search" placeholder="Rechercher une recette" name="research"
-                        aria-label="research bar ">
+                        aria-label="research bar " autocomplete="off">
                     <i class="fa-sharp fa-solid fa-magnifying-glass search_icone"></i>
                 </div>
                 <span id="researchError"></span>
@@ -38,35 +38,39 @@
         </section>
 
         <section class="menu_dropdown">
-            <div class="ingredient_dropdown dropdown_container">
-                <button type="button" class="ingredient_dropdown_btn btn" id="ingredientBtn">Ingredients</button>
-                <input type="text" class="ingredient_dropdown_input dropdown_input" id="inputIngredient"
-                    placeholder="Rechercher un ingrédient">
-                <i class="fa-solid fa-chevron-down dropdown_icone" aria-hidden="true"></i>
+
+            <div class="dropbox_container ingredient_container">
+                <div class="dropbox_wrapper">
+                    <input type="text" class="ingredient_dropdown_input dropdown_input" id="inputIngredient"
+                        placeholder="Ingredients" autocomplete="off">
+                    <i class="fa-solid fa-chevron-down dropdown_icone btnClose" aria-hidden="true"></i>
+                </div>
                 <ul class="dropdown_ingredient_list item_list" id="ingredientItem">
                 </ul>
             </div>
-            <div class="material_dropdown dropdown_container">
-                <button type="button" class="material_dropdown_btn btn" id="deviceBtn">Appareils</button>
-                <input class="material_dropdown_input dropdown_input" id="inputDevice"
-                    placeholder="Rechercher un appareil">
-                <i class="fa-solid fa-chevron-down dropdown_icone" aria-hidden="true"></i>
+
+            <div class="dropbox_container material_container">
+                <div class="dropbox_wrapper">
+                    <input type="text" class="material_dropdown_input dropdown_input" id="inputDevice"
+                        placeholder="Appareils" autocomplete="off">
+                    <i class="fa-solid fa-chevron-down dropdown_icone btnClose" aria-hidden="true"></i>
+                </div>
                 <ul class="dropdown_material_list item_list" id="deviceItem">
                 </ul>
             </div>
-            </div>
-            <div class="utensil_dropdown dropdown_container">
-                <button type="button" class="utensil_dropdown_btn btn" id="ustensilBtn">Ustensiles</button>
-                <input class="utensil_dropdown_input dropdown_input" id="inputUstensil"
-                    placeholder="Rechercher un appareil">
-                <i class="fa-solid fa-chevron-down dropdown_icone" aria-hidden="true"></i>
+
+            <div class="dropbox_container utensil_container">
+                <div class="dropbox_wrapper">
+                    <input type="text" class="utensil_dropdown_input dropdown_input" id="inputUstensil"
+                        placeholder="Ustensils" autocomplete="off">
+                    <i class="fa-solid fa-chevron-down dropdown_icone btnClose" aria-hidden="true"></i>
+                </div>
                 <ul class="dropdown_utensil_list item_list" id="ustensilItem">
                 </ul>
             </div>
         </section>
 
-        <section class="menus_cards">
-        </section>
+        <section class="menus_cards"></section>
     </main>
     <!-- Api -->
     <script type="module" src="./src/script/api/api.js"></script>
