@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="./Src/style/index.css" rel="stylesheet" type="text/css">
+    <link href="./src/style/index.css" rel="stylesheet" type="text/css">
     <!-- add font-aweseome librairie -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
         integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
@@ -22,7 +22,7 @@
 </header>
 <main>
     <section class="search_form">
-        <form action="">
+        <form action="#">
             <div class="input_wrapper">
                 <input class="input" type="text" id="search" placeholder="Rechercher une recette" name="research"
                     aria-label="research bar ">
@@ -53,7 +53,7 @@
         </div>
         </div>
         <div class="utensil_dropdown dropdown_container">
-            <button type="button" class="utensil_dropdown_btn btn" id="deviceBtn">Ustensiles</button>
+            <button type="button" class="utensil_dropdown_btn btn" id="ustensilBtn">Ustensiles</button>
             <input class="utensil_dropdown_input dropdown_input" id="inputUstensil"
                 placeholder="Rechercher un appareil">
             <i class="fa-solid fa-chevron-down dropdown_icone" aria-hidden="true"></i>
@@ -68,8 +68,8 @@
 <!-- Api -->
 <script type="module" src="./src/script/api/api.js"></script>
 <!--filter-->
-<!--<script type="module" src="./src/script/filter/searchv1.js"></script>-->
-<script type="module" src="./src/script/filter/searchv2.js"></script>
+<script type="module" src="./src/script/filter/searchv1.js"></script>
+<!--<script type="module" src="./src/script/filter/searchv2.js"></script>-->
 <!-- Pages -->
 <script type="module" src="./src/script/page/index.js"></script>
 <!-- templates -->

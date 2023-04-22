@@ -1,3 +1,4 @@
+@charset "UTF-8";
 /***************************Setting colors***************************/ /****************************setting fonts***************************/
 @import url("https://fonts.googleapis.com/css2?family=DM+Sans:wght@700&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap");
@@ -109,6 +110,15 @@ header h1 {
 /**********************************************************************/
 main {
   width: 100%;
+  /***************************************/
+  /*form*/
+  /**************************************/
+  /***************************************/
+  /*dropdown*/
+  /**************************************/
+  /***************************************/
+  /*menus cards*/
+  /**************************************/
 }
 main .search_form {
   width: 100%;
@@ -130,24 +140,28 @@ main .search_form .input_wrapper .search_icone {
   font-size: 32px;
   top: 20px;
   right: 20px;
-  cursor: pointer;
 }
 main .search_form .display_filter_item {
   display: flex;
-  flex-direction: row;
-  gap: 20px;
+  flex-wrap: wrap;
+  max-width: 800px;
+  gap: 10px;
+  row-gap: 10px;
 }
 main .search_form .display_filter_item .filter_item_wrapper {
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  gap: 12px;
+  gap: 10px;
   height: 37px;
   padding: 0 20px;
-  background-color: #3282f7;
   border-radius: 5px;
-  margin: 0 0 15px 0;
+  width: -moz-fit-content;
+  width: fit-content;
+  /***************************************/
+  /**********media mettre en grid 50% 50% avec marge latérale********/
+  /***************************************/
 }
 main .search_form .display_filter_item .filter_item_wrapper .item_text_display {
   color: #e7e7e7;
@@ -157,11 +171,20 @@ main .search_form .display_filter_item .filter_item_wrapper .item_logo {
   color: #e7e7e7;
   cursor: pointer;
 }
+main .search_form .display_filter_item .blue {
+  background-color: #3282f7;
+}
+main .search_form .display_filter_item .green {
+  background-color: #68d9a4;
+}
+main .search_form .display_filter_item .red {
+  background-color: #ed6454;
+}
 main .menu_dropdown {
   display: flex;
   flex-direction: row;
   gap: 20px;
-  margin-bottom: 25px;
+  margin: 20px 0 25px 0;
 }
 main .menu_dropdown .dropdown_container {
   position: relative;

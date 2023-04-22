@@ -124,7 +124,6 @@ class FilterSearch {
       );
     }
   }
-
   //methode for finish the filter without repeat 2 times
   elementFilter(el, filterEl) {
     return (
@@ -191,32 +190,24 @@ class FilterSearch {
   listenItemInput() {
     inputIngredient.addEventListener("input", (e) => {
       this.itemInputValue = e.target.value;
+      inputDevice.value = "";
+      inputUstensil.value = "";
       this.itemChoice = "ingredient";
       this.searchFilter();
     });
     inputDevice.addEventListener("input", (e) => {
       this.itemInputValue = e.target.value;
+      inputIngredient.value = "";
+      inputUstensil.value = "";
       this.itemChoice = "device";
       this.searchFilter();
     });
     inputUstensil.addEventListener("input", (e) => {
       this.itemInputValue = e.target.value;
+      inputIngredient.value = "";
+      inputDevice.value = "";
       this.itemChoice = "ustensil";
       this.searchFilter();
-    });
-
-    inputIngredient.addEventListener("focus", () => {
-      console.log("ça marche");
-      inputDevice.value = "";
-      inputUstensil.value = "";
-    });
-    inputDevice.addEventListener("focus", () => {
-      inputIngredient.value = "";
-      inputUstensil.value = "";
-    });
-    inputUstensil.addEventListener("focus", () => {
-      inputIngredient.value = "";
-      inputDevice.value = "";
     });
   }
 
@@ -235,7 +226,12 @@ class FilterSearch {
 
         if (!this.filterClickedElement.includes(item)) {
           this.filterClickedElement.push(item);
-          this.dropdowncard.displayClickedElement(item);
+          this.dropdowncard.displayClickedElement(
+            item,
+            this.ingredientList,
+            this.deviceList,
+            this.ustensilList
+          );
           this.searchFilter();
         }
       });
@@ -247,8 +243,8 @@ class FilterSearch {
     itemLogo.forEach((button) => {
       button.addEventListener("click", (e) => {
         //we remove item in html and send array and item to the remove method. ItemId will be the same than the tag textcontent in the array
-        const ItemId = button.parentElement.parentElement.id;
-        button.parentElement.parentElement.remove();
+        const ItemId = button.parentElement.id;
+        button.parentElement.remove();
         this.removeItemFromArray(this.filterClickedElement, ItemId);
         this.filteredWitchClickedArray();
         this.searchFilter();

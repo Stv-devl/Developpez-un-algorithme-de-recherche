@@ -10,13 +10,34 @@ class DropDownCard {
   }
 
   //display in dom clicked element
-  displayClickedElement(item) {
+  displayClickedElement(item, ingredientList, deviceList, ustensilList) {
+    if (ingredientList.filter((el) => el.includes(item)).length > 0) {
+      this.displayElement(item, "ingredient");
+    }
+    if (deviceList.filter((el) => el.includes(item)).length > 0) {
+      this.displayElement(item, "device");
+    }
+    if (ustensilList.filter((el) => el.includes(item)).length > 0) {
+      this.displayElement(item, "ustensil");
+    }
+  }
+
+  displayElement(item, itemType) {
     const existingItem = document.getElementById(`item`);
     if (existingItem) {
       return;
     } else {
       const filterItemWrapper = document.createElement("div");
-      filterItemWrapper.setAttribute("class", "filter_item_wrapper");
+
+      if (itemType === "ingredient") {
+        filterItemWrapper.classList.add("filter_item_wrapper", "blue");
+      }
+      if (itemType === "device") {
+        filterItemWrapper.classList.add("filter_item_wrapper", "green");
+      }
+      if (itemType === "ustensil") {
+        filterItemWrapper.classList.add("filter_item_wrapper", "red");
+      }
       filterItemWrapper.setAttribute("id", item);
 
       const itemTextDisplay = document.createElement("p");
@@ -26,10 +47,9 @@ class DropDownCard {
       const itemLogo = document.createElement("i");
       itemLogo.setAttribute("class", "fa-regular fa-circle-xmark item_logo");
 
-      itemTextDisplay.appendChild(itemLogo);
       filterItemWrapper.appendChild(itemTextDisplay);
+      filterItemWrapper.appendChild(itemLogo);
       this.displayFilterItem.appendChild(filterItemWrapper);
-      //mettre grid CSS comme cards?
     }
   }
 

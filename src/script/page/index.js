@@ -1,8 +1,8 @@
 //api
 import MenuApi from "../api/api.js";
 //filter
-/*import FilterSearch from "../filter/searchv1.js";*/
-import FilterSearch from "../filter/searchv2.js";
+import FilterSearch from "../filter/searchv1.js";
+/*import FilterSearch from "../filter/searchv2.js";*/
 //template
 import MenuCard from "../template/menuCardTemplate.js";
 import IngredientCard from "../template/ingredientCardTemplate.js";

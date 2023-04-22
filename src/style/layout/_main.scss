@@ -4,6 +4,10 @@
 main {
   width: 100%;
 
+  /***************************************/
+  /*form*/
+  /**************************************/
+
   .search_form {
     width: 100%;
 
@@ -23,23 +27,27 @@ main {
         font-size: 32px;
         top: 20px;
         right: 20px;
-        cursor: pointer;
       }
     }
 
     .display_filter_item {
-      @include direction-row;
-
-      gap: 20px;
+      display: flex;
+      flex-wrap: wrap;
+      max-width: 800px;
+      gap: 10px;
+      row-gap: 10px;
 
       .filter_item_wrapper {
         @include center-row;
-        gap: 12px;
+        gap: 10px;
         height: 37px;
         padding: 0 20px;
-        background-color: $filterBackgroundBlue;
         border-radius: 5px;
-        margin: 0 0 15px 0;
+        width: fit-content;
+
+        /***************************************/
+        /**********media mettre en grid 50% 50% avec marge latérale********/
+        /***************************************/
 
         .item_text_display {
           color: $whiteText;
@@ -51,12 +59,25 @@ main {
           cursor: pointer;
         }
       }
+      .blue {
+        background-color: $filterBackgroundBlue;
+      }
+      .green {
+        background-color: $filterBackgroundGreen;
+      }
+      .red {
+        background-color: $filterBackgroundRed;
+      }
     }
   }
+
+  /***************************************/
+  /*dropdown*/
+  /**************************************/
   .menu_dropdown {
     @include direction-row;
     gap: 20px;
-    margin-bottom: 25px;
+    margin: 20px 0 25px 0;
 
     .dropdown_container {
       position: relative;
@@ -100,6 +121,10 @@ main {
       }
     }
   }
+
+  /***************************************/
+  /*menus cards*/
+  /**************************************/
   .menus_cards {
     display: grid;
     grid-template-columns: 31% 31% 31%;

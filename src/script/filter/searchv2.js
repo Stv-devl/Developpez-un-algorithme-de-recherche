@@ -85,7 +85,7 @@ class FilterSearch {
     this.closeItemLogo();
   }
 
-  //The principale filter. When we do search in the search bar. ListArray (the list of 50 menus) is filtered with the input result. we will filter every part of array who have text.
+  //The principale filter. When we do search in the search bar. ListArray (the list of 50 menus) is filtered with the input result. we will filter every part of array who have text. In this V2 we use boucle for & indexOf()
   filterSearchMenu() {
     //if user write uppercase in input it will become lowercase
     const inputResult = this.searchInputValue.toLowerCase();
@@ -93,10 +93,11 @@ class FilterSearch {
 
     for (let i = 0; i < this.listArray.length; i++) {
       const data = this.listArray[i];
+
       if (
-        data.description.toLowerCase().includes(inputResult) ||
-        data.appliance.toLowerCase().includes(inputResult) ||
-        data.name.toLowerCase().includes(inputResult)
+        data.description.toLowerCase().indexOf(inputResult) !== -1 ||
+        data.appliance.toLowerCase().indexOf(inputResult) !== -1 ||
+        data.name.toLowerCase().indexOf(inputResult) !== -1
       ) {
         filterMenus.push(data);
         continue; //continue for launch the others loop
@@ -104,14 +105,14 @@ class FilterSearch {
 
       for (let j = 0; j < data.ustensils.length; j++) {
         const ustensilElement = data.ustensils[j];
-        if (ustensilElement.toLowerCase().includes(inputResult)) {
+        if (ustensilElement.toLowerCase().indexOf(inputResult) !== -1) {
           filterMenus.push(data);
           break; //to close instruction
         }
       }
       for (let x = 0; x < data.ingredients.length; x++) {
         const ingredientElement = data.ingredients[x].ingredient;
-        if (ingredientElement.toLowerCase().includes(inputResult)) {
+        if (ingredientElement.toLowerCase().indexOf(inputResult) !== -1) {
           filterMenus.push(data);
           break; //to close instruction
         }
@@ -120,7 +121,7 @@ class FilterSearch {
     return filterMenus;
   }
 
-  //if have more than 3 characters or filterClickedElement array is not empty. we filter the result of filterSearchMenu(). Else, if have nothing in the search input. Send to elementFilter()
+  //if have more than 3 characters or filterClickedElement array is ore than 1 element. we filter the result of filterSearchMenu(). Else, if have nothing in the search input and only 1 element in the array. Send to elementFilter() for filter
   filteredWitchClickedArray() {
     //every for read if have more than 1 element in the array
     if (
@@ -128,8 +129,10 @@ class FilterSearch {
       this.filterClickedElement.length > 1
     ) {
       this.filteredList = this.filterSearchMenu().filter((el) =>
-        this.filterClickedElement.every((filterEl) =>
-          this.elementFilter(el, filterEl)
+        this.filterClickedElement.every(
+          (
+            filterEl //every for filter will all elements of the array
+          ) => this.elementFilter(el, filterEl)
         )
       );
     } else {
@@ -141,7 +144,7 @@ class FilterSearch {
     }
   }
 
-  //methode for finish the filter without repeat 2 times
+  //methode to finish the filter without repeat 2 times
   elementFilter(el, filterEl) {
     return (
       filterEl.toLowerCase().includes(el.appliance.toLowerCase()) ||
@@ -180,27 +183,26 @@ class FilterSearch {
   }
   //Create a secondary array for ingredient.Flatmap will take all ingredients and put them in the same array. Filter will delete all element who is write more than 1 time. Sort in alphabetical order
   filteredMenusIngredient() {
-    /*
     this.ingredientList = this.filteredList
       .flatMap((data) => data.ingredients.flatMap((ing) => ing.ingredient))
       .filter((value, index, self) => self.indexOf(value) === index)
-      .sort((a, b) => a.localeCompare(b));*/
+      .sort((a, b) => a.localeCompare(b));
     return this.ingredientList;
   }
   //Create a secondary array for device. Map will take all devices. Filter will delete all element who is write more than 1 time. Sort in alphabetical order
   filteredMenusDevice() {
-    /* this.deviceList = this.filteredList
+    this.deviceList = this.filteredList
       .map((data) => data.appliance)
       .filter((value, index, self) => self.indexOf(value) === index)
-      .sort((a, b) => a.localeCompare(b));*/
+      .sort((a, b) => a.localeCompare(b));
     return this.deviceList;
   }
   //Create a secondary array for ingredient.Flatmap will take all ingredients and put them in the same array. Filter will delete all element who is write more than 1 time. Sort in alphabetical order
   filteredMenusUstensil() {
-    /*this.ustensilList = this.filteredList
+    this.ustensilList = this.filteredList
       .flatMap((data) => data.ustensils)
       .filter((value, index, self) => self.indexOf(value) === index)
-      .sort((a, b) => a.localeCompare(b));*/
+      .sort((a, b) => a.localeCompare(b));
     return this.ustensilList;
   }
 
@@ -208,32 +210,24 @@ class FilterSearch {
   listenItemInput() {
     inputIngredient.addEventListener("input", (e) => {
       this.itemInputValue = e.target.value;
+      inputDevice.value = "";
+      inputUstensil.value = "";
       this.itemChoice = "ingredient";
       this.searchFilter();
     });
     inputDevice.addEventListener("input", (e) => {
       this.itemInputValue = e.target.value;
+      inputIngredient.value = "";
+      inputUstensil.value = "";
       this.itemChoice = "device";
       this.searchFilter();
     });
     inputUstensil.addEventListener("input", (e) => {
       this.itemInputValue = e.target.value;
+      inputIngredient.value = "";
+      inputDevice.value = "";
       this.itemChoice = "ustensil";
       this.searchFilter();
-    });
-
-    inputIngredient.addEventListener("focus", () => {
-      console.log("ça marche");
-      inputDevice.value = "";
-      inputUstensil.value = "";
-    });
-    inputDevice.addEventListener("focus", () => {
-      inputIngredient.value = "";
-      inputUstensil.value = "";
-    });
-    inputUstensil.addEventListener("focus", () => {
-      inputIngredient.value = "";
-      inputDevice.value = "";
     });
   }
 
@@ -263,9 +257,10 @@ class FilterSearch {
     const itemLogo = document.querySelectorAll(".item_logo");
     itemLogo.forEach((button) => {
       button.addEventListener("click", (e) => {
+        console.log(button.parentElement);
         //we remove item in html and send array and item to the remove method. ItemId will be the same than the tag textcontent in the array
-        const ItemId = button.parentElement.parentElement.id;
-        button.parentElement.parentElement.remove();
+        const ItemId = button.parentElement.id;
+        button.parentElement.remove();
         this.removeItemFromArray(this.filterClickedElement, ItemId);
         this.filteredWitchClickedArray();
         this.searchFilter();
