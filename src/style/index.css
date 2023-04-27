@@ -1,4 +1,3 @@
-@charset "UTF-8";
 /***************************Setting colors***************************/ /****************************setting fonts***************************/
 @import url("https://fonts.googleapis.com/css2?family=DM+Sans:wght@700&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap");
@@ -88,9 +87,6 @@ a:visited {
 }
 
 /*************************breakup**************************/
-/*
-$breakup-tablette: 650px;
-$breakup-desktop: 1060px;*/
 /**********************************************************************/
 /*header*/
 /**********************************************************************/
@@ -135,12 +131,27 @@ main .search_form .input_wrapper .input {
   background-color: #e7e7e7;
   border: none;
   border-radius: 5px;
+  /*******************************************/
+  /*******************************************/
+}
+@media screen and (max-width: 555px) {
+  main .search_form .input_wrapper .input {
+    font-size: 14px;
+  }
 }
 main .search_form .input_wrapper .search_icone {
   position: absolute;
   font-size: 32px;
   top: 20px;
   right: 20px;
+  /*******************************************/
+  /*******************************************/
+}
+@media screen and (max-width: 555px) {
+  main .search_form .input_wrapper .search_icone {
+    top: 26px;
+    font-size: 20px;
+  }
 }
 main .search_form .display_filter_item {
   display: flex;
@@ -160,17 +171,28 @@ main .search_form .display_filter_item .filter_item_wrapper {
   border-radius: 5px;
   width: -moz-fit-content;
   width: fit-content;
-  /***************************************/
-  /**********media mettre en grid 50% 50% avec marge latérale********/
-  /***************************************/
 }
 main .search_form .display_filter_item .filter_item_wrapper .item_text_display {
   color: #e7e7e7;
+  /*******************************************/
+  /*******************************************/
+}
+@media screen and (max-width: 555px) {
+  main .search_form .display_filter_item .filter_item_wrapper .item_text_display {
+    font-size: 12px;
+  }
 }
 main .search_form .display_filter_item .filter_item_wrapper .item_logo {
   font-size: 20px;
   color: #e7e7e7;
   cursor: pointer;
+  /*******************************************/
+  /*******************************************/
+}
+@media screen and (max-width: 555px) {
+  main .search_form .display_filter_item .filter_item_wrapper .item_logo {
+    font-size: 15px;
+  }
 }
 main .search_form .display_filter_item .blue {
   background-color: #3282f7;
@@ -186,6 +208,14 @@ main .menu_dropdown {
   flex-direction: row;
   gap: 20px;
   margin: 20px 0 25px 0;
+  /********************media*******************/
+  /*******************************************/
+}
+@media screen and (max-width: 555px) {
+  main .menu_dropdown {
+    gap: 10px;
+    margin: 0 0 20px 0;
+  }
 }
 main .menu_dropdown .ingredient_container {
   background-color: #3282f7;
@@ -202,6 +232,15 @@ main .menu_dropdown .dropbox_container {
   height: 69px;
   padding: 0 20px;
   border-radius: 5px;
+  /********************media*******************/
+  /*******************************************/
+}
+@media screen and (max-width: 555px) {
+  main .menu_dropdown .dropbox_container {
+    width: 100px;
+    height: 50px;
+    padding: 0 8px;
+  }
 }
 main .menu_dropdown .dropbox_container .dropbox_wrapper {
   display: flex;
@@ -215,6 +254,8 @@ main .menu_dropdown .dropbox_container .dropbox_wrapper .dropdown_input {
   color: #e7e7e7;
   background: none;
   border: none;
+  /********************media*******************/
+  /*******************************************/
 }
 main .menu_dropdown .dropbox_container .dropbox_wrapper .dropdown_input::-moz-placeholder {
   color: #e7e7e7;
@@ -222,10 +263,32 @@ main .menu_dropdown .dropbox_container .dropbox_wrapper .dropdown_input::-moz-pl
 main .menu_dropdown .dropbox_container .dropbox_wrapper .dropdown_input::placeholder {
   color: #e7e7e7;
 }
+@media screen and (max-width: 555px) {
+  main .menu_dropdown .dropbox_container .dropbox_wrapper .dropdown_input {
+    width: 63px;
+    height: 50px;
+    font-size: 12px;
+  }
+}
 main .menu_dropdown .dropbox_container .dropbox_wrapper .dropdown_icone {
   top: 27px;
   color: #e7e7e7;
   cursor: pointer;
+  transform: rotate(360deg);
+  transition: 0.3s ease-in-out;
+  /********************media*******************/
+  /*******************************************/
+}
+main .menu_dropdown .dropbox_container .dropbox_wrapper .dropdown_icone:hover {
+  transform: scale(1.2);
+}
+@media screen and (max-width: 555px) {
+  main .menu_dropdown .dropbox_container .dropbox_wrapper .dropdown_icone {
+    font-size: 12px;
+  }
+}
+main .menu_dropdown .dropbox_container .dropbox_wrapper .rotate {
+  transform: rotate(180deg);
 }
 main .menu_dropdown .dropbox_container .item_list {
   display: none;
@@ -256,6 +319,38 @@ main .menu_dropdown .dropbox_container.active .item_list {
   padding: 10px 20px 10px 20px;
   border-radius: 0 0 5px 5px;
   cursor: pointer;
+  /********************media*******************/
+  /*******************************************/
+  /*******************************************/
+}
+@media screen and (max-width: 1060px) {
+  main .menu_dropdown .dropbox_container.active .item_list {
+    grid-template-columns: 1fr 1fr;
+    -moz-column-gap: 5px;
+         column-gap: 5px;
+    padding: 8px;
+  }
+}
+@media screen and (max-width: 555px) {
+  main .menu_dropdown .dropbox_container.active .item_list {
+    grid-template-columns: 1fr;
+    -moz-column-gap: 5px;
+         column-gap: 5px;
+    padding: 5px;
+  }
+}
+main .menu_dropdown .dropbox_container.active .item_list .dropdown_item {
+  transition: 0.4s ease-in-out;
+  /*******************************************/
+  /*******************************************/
+}
+main .menu_dropdown .dropbox_container.active .item_list .dropdown_item:hover {
+  color: #000000;
+}
+@media screen and (max-width: 555px) {
+  main .menu_dropdown .dropbox_container.active .item_list .dropdown_item {
+    font-size: 12px;
+  }
 }
 main .menus_cards {
   display: grid;
@@ -263,10 +358,32 @@ main .menus_cards {
   -moz-column-gap: 3.5%;
        column-gap: 3.5%;
   row-gap: 50px;
+  /********************media*******************/
+  /*******************************************/
+  /*******************************************/
+}
+@media screen and (max-width: 1060px) {
+  main .menus_cards {
+    grid-template-columns: 48.2% 48.2%;
+    row-gap: 20px;
+  }
+}
+@media screen and (max-width: 555px) {
+  main .menus_cards {
+    grid-template-columns: 100%;
+    row-gap: 20px;
+  }
 }
 main .menus_cards article {
   width: 100%;
-  height: 364px;
+  height: 370px;
+  /*******************************************/
+  /*******************************************/
+}
+@media screen and (max-width: 555px) {
+  main .menus_cards article {
+    height: 300px;
+  }
 }
 main .menus_cards article .futur_picture {
   height: 48%;
@@ -276,16 +393,22 @@ main .menus_cards article .futur_picture {
 main .menus_cards article .receipt_container {
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  justify-content: center;
+  gap: 15px;
   height: 52%;
   background-color: #e7e7e7;
   border-radius: 0 0 5px 5px;
-  padding: 18px 20px 18px 20px;
+  padding: 0 15px 0 15px;
 }
 main .menus_cards article .receipt_container .title_wrapper {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+}
+main .menus_cards article .receipt_container .title_wrapper h2 {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 main .menus_cards article .receipt_container .title_wrapper .time_wrapper {
   display: flex;
@@ -311,11 +434,15 @@ main .menus_cards article .receipt_container .receipt_wrapper .ingredient_wrappe
   gap: 2px;
 }
 main .menus_cards article .receipt_container .receipt_wrapper .menu_description {
-  width: 150px;
-  display: -webkit-box;
-  -webkit-line-clamp: 7;
-  -webkit-box-orient: vertical;
+  width: 50%;
+  height: 85px;
+  line-height: 14px;
   overflow: hidden;
+  /*text-overflow: ellipsis;
+  white-space: normal;*/
+  display: -webkit-box;
+  -webkit-line-clamp: 6;
+  -webkit-box-orient: vertical;
 }
 
 /**********************************************************************/

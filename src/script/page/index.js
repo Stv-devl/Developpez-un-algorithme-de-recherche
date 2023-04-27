@@ -21,12 +21,12 @@ class App {
   //Get data from APY, array this.menus and this.filteredMenus implemented with data.
   async sendData() {
     const { menus } = await this.dataApi.get();
-    //launch the filter
+    //launch the filter class
     const filtersearch = new FilterSearch();
     filtersearch.launchFilter(menus);
   }
   //We get return from filter and launch the display.
-  async launchingFiltered(filteredMenus) {
+  launchingFiltered(filteredMenus) {
     if (filteredMenus) {
       this.filteredMenus = filteredMenus;
       this.displayMenu();
@@ -36,11 +36,11 @@ class App {
   displayMenu() {
     //deletes articles create when we launch the method
     this.menusCards.innerHTML = "";
-    // Display the menus objects, send to dom display. For each menu, launch MenuCard Classn add open dom display
+    //display the menus objects, send to dom display. For each menu, launch MenuCard Classn add open dom display
     this.filteredMenus.forEach((menu) => {
       const menucardtemplate = new MenuCard(menu);
       this.menusCards.appendChild(menucardtemplate.displayMenuCard());
-      // Get all <article> with the id number, get ingredient wrapper for every <article>
+      //get all <article> with the id number, get ingredient wrapper for every <article>
       const menuArticle = document.querySelector(`#card${menu.id}`);
       const ingredientWrapper = menuArticle.querySelector(
         ".ingredient_wrapper"

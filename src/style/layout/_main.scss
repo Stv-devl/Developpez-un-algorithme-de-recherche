@@ -21,12 +21,25 @@ main {
         background-color: $inputBackgroundGrey;
         border: none;
         border-radius: 5px;
+
+        /*******************************************/
+        @media screen and (max-width: $breakup-smartphone) {
+          font-size: 14px;
+        }
+        /*******************************************/
       }
       .search_icone {
         position: absolute;
         font-size: 32px;
         top: 20px;
         right: 20px;
+
+        /*******************************************/
+        @media screen and (max-width: $breakup-smartphone) {
+          top: 26px;
+          font-size: 20px;
+        }
+        /*******************************************/
       }
     }
 
@@ -45,18 +58,25 @@ main {
         border-radius: 5px;
         width: fit-content;
 
-        /***************************************/
-        /**********media mettre en grid 50% 50% avec marge latérale********/
-        /***************************************/
-
         .item_text_display {
           color: $whiteText;
+          /*******************************************/
+          @media screen and (max-width: $breakup-smartphone) {
+            font-size: 12px;
+          }
+          /*******************************************/
         }
 
         .item_logo {
           font-size: 20px;
           color: $whiteText;
           cursor: pointer;
+
+          /*******************************************/
+          @media screen and (max-width: $breakup-smartphone) {
+            font-size: 15px;
+          }
+          /*******************************************/
         }
       }
       .blue {
@@ -79,6 +99,13 @@ main {
     gap: 20px;
     margin: 20px 0 25px 0;
 
+    /********************media*******************/
+    @media screen and (max-width: $breakup-smartphone) {
+      gap: 10px;
+      margin: 0 0 20px 0;
+    }
+    /*******************************************/
+
     .ingredient_container {
       background-color: $filterBackgroundBlue;
     }
@@ -98,6 +125,14 @@ main {
       padding: 0 20px;
       border-radius: 5px;
 
+      /********************media*******************/
+      @media screen and (max-width: $breakup-smartphone) {
+        width: 100px;
+        height: 50px;
+        padding: 0 8px;
+      }
+      /*******************************************/
+
       .dropbox_wrapper {
         display: flex;
         justify-content: space-between;
@@ -114,11 +149,34 @@ main {
           &::placeholder {
             color: $whiteText;
           }
+
+          /********************media*******************/
+          @media screen and (max-width: $breakup-smartphone) {
+            width: 63px;
+            height: 50px;
+            font-size: 12px;
+          }
+          /*******************************************/
         }
         .dropdown_icone {
           top: 27px;
           color: $whiteText;
           cursor: pointer;
+          transform: rotate(360deg);
+          transition: 0.3s ease-in-out;
+
+          &:hover {
+            transform: scale(1.2);
+          }
+
+          /********************media*******************/
+          @media screen and (max-width: $breakup-smartphone) {
+            font-size: 12px;
+          }
+          /*******************************************/
+        }
+        .rotate {
+          transform: rotate(180deg);
         }
       }
 
@@ -154,6 +212,33 @@ main {
         padding: 10px 20px 10px 20px;
         border-radius: 0 0 5px 5px;
         cursor: pointer;
+
+        /********************media*******************/
+        @media screen and (max-width: $breakup-tablette) {
+          grid-template-columns: 1fr 1fr;
+          column-gap: 5px;
+          padding: 8px;
+        }
+        /*******************************************/
+        @media screen and (max-width: $breakup-smartphone) {
+          grid-template-columns: 1fr;
+          column-gap: 5px;
+          padding: 5px;
+        }
+        /*******************************************/
+
+        .dropdown_item {
+          transition: 0.4s ease-in-out;
+
+          &:hover {
+            color: $blackText;
+          }
+          /*******************************************/
+          @media screen and (max-width: $breakup-smartphone) {
+            font-size: 12px;
+          }
+          /*******************************************/
+        }
       }
     }
   }
@@ -167,9 +252,27 @@ main {
     column-gap: 3.5%;
     row-gap: 50px;
 
+    /********************media*******************/
+    @media screen and (max-width: $breakup-tablette) {
+      grid-template-columns: 48.2% 48.2%;
+      row-gap: 20px;
+    }
+    /*******************************************/
+    @media screen and (max-width: $breakup-smartphone) {
+      grid-template-columns: 100%;
+      row-gap: 20px;
+    }
+    /*******************************************/
+
     article {
       width: 100%;
-      height: 364px;
+      height: 370px;
+
+      /*******************************************/
+      @media screen and (max-width: $breakup-smartphone) {
+        height: 300px;
+      }
+      /*******************************************/
 
       .futur_picture {
         height: 48%;
@@ -178,15 +281,22 @@ main {
       }
       .receipt_container {
         @include direction-column;
-        gap: 20px;
+        justify-content: center;
+        gap: 15px;
         height: 52%;
         background-color: $menuCardBackgroundGrey;
         border-radius: 0 0 5px 5px;
-        padding: 18px 20px 18px 20px;
+        padding: 0 15px 0 15px;
 
         .title_wrapper {
           @include direction-row;
           justify-content: space-between;
+
+          h2 {
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+          }
 
           .time_wrapper {
             @include center-row;
@@ -209,11 +319,15 @@ main {
             }
           }
           .menu_description {
-            width: 150px;
-            display: -webkit-box;
-            -webkit-line-clamp: 7;
-            -webkit-box-orient: vertical;
+            width: 50%;
+            height: 85px;
+            line-height: 14px;
             overflow: hidden;
+            /*text-overflow: ellipsis;
+            white-space: normal;*/
+            display: -webkit-box;
+            -webkit-line-clamp: 6;
+            -webkit-box-orient: vertical;
           }
         }
       }
