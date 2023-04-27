@@ -17,7 +17,7 @@ class FilterSearch {
     this.ustensilList = []; //array for ustensil
     this.itemInputValue = "";
     this.searchInputValue = ""; //to keep input data
-    this.itemChoice; //for sezlected the input user is writing
+    this.itemChoice; //for selected the input user is writing
     this.app = new App(); //activate App class from index.js
     this.dropdowncard = new DropDownCard(); //activate DropDownCard class from template
   }
@@ -80,12 +80,12 @@ class FilterSearch {
       this.deviceList,
       this.ustensilList
     );
-    this.app.launchingFiltered(this.filteredList);
+    this.app.displayMenu(this.filteredList);
     this.listenClickOnList();
     this.closeItemLogo();
   }
 
-  //The principale filter. When we do search in the search bar. ListArray (the list of 50 menus) is filtered with the input result. we will filter every part of array who have text.
+  //V2 FILTER SEARCH, When we do search in the search bar. ListArray (the list of 50 menus) is filtered with the input result. we will filter every part of array who have text.
   filterSearchMenu() {
     //if user write uppercase in input it will become lowercase
     const inputResult = this.searchInputValue.toLowerCase();
@@ -217,6 +217,8 @@ class FilterSearch {
     const dropdownInput = document.querySelectorAll(".dropdown_input");
     dropdownItem.forEach((button) => {
       button.addEventListener("click", (e) => {
+        //get id of parentelement of clicked item (so the <ul>) and get textcontent of clicked element
+        const getUlId = button.parentElement.id;
         const item = e.target.textContent;
         //deletes inputs values when we click
         dropdownInput.forEach((input) => {
@@ -228,6 +230,7 @@ class FilterSearch {
           this.filterClickedElement.push(item);
           this.dropdowncard.displayClickedElement(
             item,
+            getUlId,
             this.ingredientList,
             this.deviceList,
             this.ustensilList
@@ -242,10 +245,10 @@ class FilterSearch {
     const itemLogo = document.querySelectorAll(".item_logo");
     itemLogo.forEach((button) => {
       button.addEventListener("click", (e) => {
-        //we remove item in html and send array and item to the remove method. ItemId will be the same than the tag textcontent in the array
-        const ItemId = button.parentElement.id;
+        //we remove item in html and send array and item to the remove method. ItemValue will be the tag textcontent from the array
+        const ItemValue = button.parentElement.children[0].textContent;
         button.parentElement.remove();
-        this.removeItemFromArray(this.filterClickedElement, ItemId);
+        this.removeItemFromArray(this.filterClickedElement, ItemValue);
         this.filteredWitchClickedArray();
         this.searchFilter();
       });

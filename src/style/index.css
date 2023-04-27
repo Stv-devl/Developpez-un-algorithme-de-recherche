@@ -116,6 +116,9 @@ main {
   /***************************************/
   /*menus cards*/
   /**************************************/
+  /***************************************/
+  /*Error Message*/
+  /**************************************/
 }
 main .search_form {
   width: 100%;
@@ -443,6 +446,31 @@ main .menus_cards article .receipt_container .receipt_wrapper .menu_description 
   display: -webkit-box;
   -webkit-line-clamp: 6;
   -webkit-box-orient: vertical;
+}
+main .error_message {
+  margin-top: 40px;
+  text-align: center;
+  width: 90%;
+  /*******************************************/
+  /*******************************************/
+}
+@media screen and (max-width: 555px) {
+  main .error_message {
+    margin-top: 20spx;
+  }
+}
+main .error_message .error {
+  color: red;
+  font-size: 18px;
+  font-weight: 800;
+  /*******************************************/
+  /*******************************************/
+}
+@media screen and (max-width: 555px) {
+  main .error_message .error {
+    font-size: 14px;
+    font-weight: 400;
+  }
 }
 
 /**********************************************************************/

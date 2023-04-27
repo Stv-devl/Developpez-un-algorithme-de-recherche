@@ -80,12 +80,12 @@ class FilterSearch {
       this.deviceList,
       this.ustensilList
     );
-    this.app.launchingFiltered(this.filteredList);
+    this.app.displayMenu(this.filteredList);
     this.listenClickOnList();
     this.closeItemLogo();
   }
 
-  //The principale filter. When we do search in the search bar. ListArray (the list of 50 menus) is filtered with the input result. we will filter every part of array who have text. In this V2 we use boucle for & indexOf()
+  //V2 FILTER SEARCH, When we do search in the search bar. ListArray (the list of 50 menus) is filtered with the input result. we will filter every part of array who have text. In this V2 we use boucle for & indexOf()
   filterSearchMenu() {
     //if user write uppercase in input it will become lowercase
     const inputResult = this.searchInputValue.toLowerCase();
@@ -121,7 +121,7 @@ class FilterSearch {
     return filterMenus;
   }
 
-  //if have more than 3 characters or filterClickedElement array is ore than 1 element. we filter the result of filterSearchMenu(). Else, if have nothing in the search input and only 1 element in the array. Send to elementFilter() for filter
+  //if have more than 3 characters or filterClickedElement array is not empty. we filter the result of filterSearchMenu(). Else, if have nothing in the search input. Send to elementFilter()
   filteredWitchClickedArray() {
     //every for read if have more than 1 element in the array
     if (
@@ -129,10 +129,8 @@ class FilterSearch {
       this.filterClickedElement.length > 1
     ) {
       this.filteredList = this.filterSearchMenu().filter((el) =>
-        this.filterClickedElement.every(
-          (
-            filterEl //every for filter will all elements of the array
-          ) => this.elementFilter(el, filterEl)
+        this.filterClickedElement.every((filterEl) =>
+          this.elementFilter(el, filterEl)
         )
       );
     } else {
@@ -143,8 +141,7 @@ class FilterSearch {
       );
     }
   }
-
-  //methode to finish the filter without repeat 2 times
+  //methode for finish the filter without repeat 2 times
   elementFilter(el, filterEl) {
     return (
       filterEl.toLowerCase().includes(el.appliance.toLowerCase()) ||
@@ -237,6 +234,8 @@ class FilterSearch {
     const dropdownInput = document.querySelectorAll(".dropdown_input");
     dropdownItem.forEach((button) => {
       button.addEventListener("click", (e) => {
+        //get id of parentelement of clicked item (so the <ul>) and get textcontent of clicked element
+        const getUlId = button.parentElement.id;
         const item = e.target.textContent;
         //deletes inputs values when we click
         dropdownInput.forEach((input) => {
@@ -246,7 +245,13 @@ class FilterSearch {
 
         if (!this.filterClickedElement.includes(item)) {
           this.filterClickedElement.push(item);
-          this.dropdowncard.displayClickedElement(item);
+          this.dropdowncard.displayClickedElement(
+            item,
+            getUlId,
+            this.ingredientList,
+            this.deviceList,
+            this.ustensilList
+          );
           this.searchFilter();
         }
       });
@@ -257,11 +262,10 @@ class FilterSearch {
     const itemLogo = document.querySelectorAll(".item_logo");
     itemLogo.forEach((button) => {
       button.addEventListener("click", (e) => {
-        console.log(button.parentElement);
-        //we remove item in html and send array and item to the remove method. ItemId will be the same than the tag textcontent in the array
-        const ItemId = button.parentElement.id;
+        //we remove item in html and send array and item to the remove method. ItemValue will be the tag textcontent from the array
+        const ItemValue = button.parentElement.children[0].textContent;
         button.parentElement.remove();
-        this.removeItemFromArray(this.filterClickedElement, ItemId);
+        this.removeItemFromArray(this.filterClickedElement, ItemValue);
         this.filteredWitchClickedArray();
         this.searchFilter();
       });

@@ -333,4 +333,32 @@ main {
       }
     }
   }
+  /***************************************/
+  /*Error Message*/
+  /**************************************/
+
+  .error_message {
+    margin-top: 40px;
+    text-align: center;
+    width: 90%;
+
+    /*******************************************/
+    @media screen and (max-width: $breakup-smartphone) {
+      margin-top: 20spx;
+    }
+    /*******************************************/
+
+    .error {
+      color: red;
+      font-size: 18px;
+      font-weight: 800;
+
+      /*******************************************/
+      @media screen and (max-width: $breakup-smartphone) {
+        font-size: 14px;
+        font-weight: 400;
+      }
+      /*******************************************/
+    }
+  }
 }

@@ -10,23 +10,37 @@ class DropDownCard {
   }
 
   //display in dom clicked element
-  displayClickedElement(item, ingredientList, deviceList, ustensilList) {
-    if (ingredientList.filter((el) => el.includes(item)).length > 0) {
+  displayClickedElement(
+    item,
+    getUlId,
+    ingredientList,
+    deviceList,
+    ustensilList
+  ) {
+    //if item match with the item list && the <ul> Id we will launch displayElement
+    if (
+      ingredientList.filter((el) => el.includes(item)).length > 0 &&
+      getUlId === "ingredientItem"
+    ) {
       this.displayElement(item, "ingredient");
     }
-    if (deviceList.filter((el) => el.includes(item)).length > 0) {
+    if (
+      deviceList.filter((el) => el.includes(item)).length > 0 &&
+      getUlId === "deviceItem"
+    ) {
       this.displayElement(item, "device");
     }
-    if (ustensilList.filter((el) => el.includes(item)).length > 0) {
+    if (
+      ustensilList.filter((el) => el.includes(item)).length > 0 &&
+      getUlId === "ustensilItem"
+    ) {
       this.displayElement(item, "ustensil");
     }
   }
 
   displayElement(item, itemType) {
     const existingItem = document.getElementById(`item`);
-    if (existingItem) {
-      return;
-    } else {
+    if (!existingItem) {
       const filterItemWrapper = document.createElement("div");
 
       if (itemType === "ingredient") {
@@ -38,7 +52,7 @@ class DropDownCard {
       if (itemType === "ustensil") {
         filterItemWrapper.classList.add("filter_item_wrapper", "red");
       }
-      filterItemWrapper.setAttribute("id", item);
+      /* filterItemWrapper.setAttribute("id", itemType + item);*/
 
       const itemTextDisplay = document.createElement("p");
       itemTextDisplay.setAttribute("class", "item_text_display");
@@ -50,7 +64,7 @@ class DropDownCard {
       filterItemWrapper.appendChild(itemTextDisplay);
       filterItemWrapper.appendChild(itemLogo);
       this.displayFilterItem.appendChild(filterItemWrapper);
-    }
+    } else return;
   }
 
   //send all the items lists to the dom function
