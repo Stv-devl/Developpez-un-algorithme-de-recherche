@@ -27,22 +27,13 @@ class App {
     const filtersearch = new FilterSearch();
     filtersearch.launchFilter(menus);
   }
-  //We get return from filter and launch the display.
-  /*launchingFiltered(filteredMenus) {
-    this.filteredMenus = filteredMenus;
-    this.displayMenu();
-    if (!filteredMenus.length > 0) {
-      this.displayErrorMessage();
-    } else return;
-  }*/
 
   ///We get return from filter and launch the display, send filtred menus to DOM template
   displayMenu(filteredMenus) {
     //implement array this.filteredMenus
     this.filteredMenus = filteredMenus;
-    //deletes span created when we launch the method
+    //deletes span and artcile created when we launch the method
     this.errorMessage.innerHTML = "";
-    //deletes articles created when we launch the method
     this.menusCards.innerHTML = "";
     //display the menus objects, send to dom display. For each menu, launch MenuCard Class, open dom display
     if (!filteredMenus.length > 0) {

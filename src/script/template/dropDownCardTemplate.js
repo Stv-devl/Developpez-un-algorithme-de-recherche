@@ -52,7 +52,6 @@ class DropDownCard {
       if (itemType === "ustensil") {
         filterItemWrapper.classList.add("filter_item_wrapper", "red");
       }
-      /* filterItemWrapper.setAttribute("id", itemType + item);*/
 
       const itemTextDisplay = document.createElement("p");
       itemTextDisplay.setAttribute("class", "item_text_display");
