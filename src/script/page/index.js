@@ -31,9 +31,8 @@ class App {
   displayMenu(filteredMenus) {
     //implement array this.filteredMenus
     this.filteredMenus = filteredMenus;
-    //deletes span created when we launch the method
+    //deletes span created && deletes article when we launch the method
     this.errorMessage.innerHTML = "";
-    //deletes articles created when we launch the method
     this.menusCards.innerHTML = "";
     //display the menus objects, send to dom display. For each menu, launch MenuCard Class, open dom display
     if (!filteredMenus.length > 0) {

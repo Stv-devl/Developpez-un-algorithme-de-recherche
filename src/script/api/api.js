@@ -1,4 +1,4 @@
-class Api {
+class MenuApi {
   constructor(url) {
     this._url = url;
   }
@@ -11,12 +11,6 @@ class Api {
     } catch (error) {
       console.log("An error occurred:", error);
     }
-  }
-}
-
-class MenuApi extends Api {
-  constructor(url) {
-    super(url);
   }
 }
 

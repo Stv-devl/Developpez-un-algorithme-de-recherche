@@ -9,78 +9,85 @@ class FilterSearch {
     this.ingredientItem = document.getElementById("ingredientItem");
     this.deviceItem = document.getElementById("deviceItem");
     this.ustensilItem = document.getElementById("ustensilItem");
-    this.listArray = []; // array with the list from Apy
-    this.filteredList = []; // array with the filtered list
+    this.listArray = []; // array with the list of menus from Api
+    this.filteredList = []; // array with the filtered list of menus
     this.filterClickedElement = []; // array with clicked tag inside
     this.ingredientList = []; // array for ingredient tag
-    this.deviceList = []; //array for device
-    this.ustensilList = []; //array for ustensil
-    this.itemInputValue = "";
-    this.searchInputValue = ""; //to keep input data
+    this.deviceList = []; //array for device tag
+    this.ustensilList = []; //array for ustensil tag
+    this.itemInputValue = ""; //to save the 3 tags inputs
+    this.searchInputValue = ""; //to save search input data
     this.itemChoice; //for selected the input user is writing
     this.app = new App(); //activate App class from index.js
     this.dropdowncard = new DropDownCard(); //activate DropDownCard class from template
   }
-  //This method is used to manage filters according to the use cases of the search bar, tag inputs, search on click on Tag...etc.
+  //This method is used to manage filters of the search bar, tag inputs, search on click on Tag...etc.
   searchFilter() {
-    //If we write in the inputs of the tags and the search bar is <3 characters. Then we launch the filterWithItemInput() function which will filter the secondary tables: ingredients, devices, ustensils, according to what we write in the input. We send the information in the template to display it in the dom. We listen to the events when the tags are clicked. The filter on the secondary tables is not saved if you do not click on a tag.
-    if (this.itemInputValue.length >= 1 && this.searchInputValue.length < 3) {
-      this.launchMethodeFilter(); //for filter previous input
-      this.filterWithItemInput();
-      this.dropdowncard.elementListDisplay(
-        this.ingredientList,
-        this.deviceList,
-        this.ustensilList
-      );
-      this.listenClickOnList();
-      this.closeItemLogo();
+    //if have something write in the tag input
+    if (this.itemInputValue.length >= 1) {
+      this.launchTheTagInputFilter(); //tag input filter
     }
-    //If we write in one of the inputs of the tags and we write more than 3 characters in the search bar then we launch the launchItemFilter() method which will filter the tags according to the search bar, we send it in the dom with the launchingFiltered() method. Then we also launch the filterWithItemInput() filter and we display it in the dom to be able to choose a tag.
-    if (this.itemInputValue.length >= 1 && this.searchInputValue.length >= 3) {
-      this.launchMethodeFilter();
-      this.filterWithItemInput();
-      this.dropdowncard.elementListDisplay(
-        this.ingredientList,
-        this.deviceList,
-        this.ustensilList
-      );
-      this.listenClickOnList();
-      this.closeItemLogo();
+    //if have something write in the tag input and in the search bar
+    if (this.itemInputValue.length >= 1 && this.searchInputValue.length >= 1) {
+      this.launchThisFilteredFilter(); //this.filteredList array filter
+      this.launchTheTagInputFilter(); //tags input filter
     }
-    //if we click on one of the tags and nothing is written in the search input then we launch the filteredWitchClickedArray() method which will filter this.filteredList according to the tag clicked. Then we launch the launchItemFilter() function which manages the filter and their display in the dom.
-
+    //if have a tag clicked and nothing is write int the items inputs
     if (
       this.filterClickedElement.length > 0 &&
       this.itemInputValue.length === 0
     ) {
-      this.filteredWitchClickedArray();
-      this.launchMethodeFilter();
+      this.filteredWitchClickedArray(); //we filter with the clicked tags
+      this.launchThisFilteredFilter(); //this.filteredList array filter
     }
-    //if more than 3 elements in input search and nothing is written in the inputValue We launch launchItemFilter and we display.
+    //if more than 3 elements in input search and nothing is write in the input tags
     if (this.searchInputValue.length >= 3 && this.itemInputValue.length === 0) {
-      this.launchMethodeFilter();
+      this.launchThisFilteredFilter(); //this.filteredList array filter
     }
-    //if nothing is written in the input search & items & nothing is clicked. then we will launch the launchItemFilter method to display all the tags in the dom. The launchingFiltered() method will display all the menus in the dom.
+    //if nothing is written in the input search & items & nothing is clicked we will display the tags array and menus with all element in the dom
     if (
       this.itemInputValue.length === 0 &&
       this.search.value.length === 0 &&
       this.filterClickedElement.length === 0
     ) {
       this.filteredList = this.listArray;
-      this.launchMethodeFilter();
+      this.launchThisFilteredFilter(); //this.filteredList array filter
     }
   }
-  //This method will launch the other methods, the 3 methods to filter ingredients, devices and utensils, their display in the dom. app.launchingFiltered(this.filteredList) will send the information to the App class of index.js for display in the dom. We will listen to the events when the tags are clicked.
-  launchMethodeFilter() {
+
+  //method to launch the principal filter with this.filteredArray
+  launchThisFilteredFilter() {
+    this.launchTagArrays(); //method to filter the 3 tags array with this.filteredList
+    this.launchElementListDisplay(); //display the 3 tags array
+    this.launchDisplayMenu(); //method to send in the dom the menu list
+    this.addEventListenerClickedItem(); //listen the addeventlistener
+  }
+  //method to filter tags with inputs, here we dont register anything in this.filteredList
+  launchTheTagInputFilter() {
+    this.filterWithItemInput(); //we filter the tags array with the the input value
+    this.launchElementListDisplay(); //we display the new tags array
+    this.addEventListenerClickedItem(); //we listen the addeventlisteners on click
+  }
+  //launch the 3 tags arrays filter
+  launchTagArrays() {
     this.filteredMenusIngredient();
     this.filteredMenusDevice();
     this.filteredMenusUstensil();
+  }
+  //launch the display of tag array in the dom
+  launchElementListDisplay() {
     this.dropdowncard.elementListDisplay(
       this.ingredientList,
       this.deviceList,
       this.ustensilList
     );
+  }
+  //launch the display of menus in the dom
+  launchDisplayMenu() {
     this.app.displayMenu(this.filteredList);
+  }
+  //launch the addEventListener listenClickOnList() & closeItemLogo()
+  addEventListenerClickedItem() {
     this.listenClickOnList();
     this.closeItemLogo();
   }
@@ -103,6 +110,63 @@ class FilterSearch {
         )
     );
     return filterMenus;
+  }
+  //if have more than 3 characters or filterClickedElement array is not empty. we filter the result of filterSearchMenu(). Else, if have nothing in the search input. Send to elementFilter()
+  filteredWitchClickedArray() {
+    //every for read if have more than 1 element in the array
+    if (
+      this.searchInputValue.length >= 3 ||
+      this.filterClickedElement.length > 1
+    ) {
+      this.filteredList = this.filterSearchMenu().filter((el) =>
+        this.filterClickedElement.every((filterEl) =>
+          this.elementFilter(el, filterEl)
+        )
+      );
+    } else {
+      this.filteredList = this.listArray.filter((el) =>
+        this.filterClickedElement.some((filterEl) =>
+          this.elementFilter(el, filterEl)
+        )
+      );
+    }
+  }
+  //methode for finish the filter without repeat 2 times
+  elementFilter(el, filterEl) {
+    return (
+      filterEl.toLowerCase().includes(el.appliance.toLowerCase()) ||
+      el.ustensils.some((element) =>
+        filterEl.toLowerCase().includes(element.toLowerCase())
+      ) ||
+      el.ingredients.some((ingr) =>
+        filterEl.toLowerCase().includes(ingr.ingredient.toLowerCase())
+      )
+    );
+  }
+  //filter item dropwdown elements when we write in the input the tags element will be filtered
+  filterWithItemInput() {
+    const inputResult = this.itemInputValue.toLowerCase();
+
+    switch (this.itemChoice) {
+      case "ingredient":
+        //filter the secondary array this.ingredientList with the input value
+        this.ingredientList = this.ingredientList.filter((el) =>
+          el.toLowerCase().includes(inputResult)
+        );
+        break;
+      case "device":
+        //filter the secondary array this.deviceList with the input value
+        this.deviceList = this.deviceList.filter((el) =>
+          el.toLowerCase().includes(inputResult)
+        );
+        break;
+      case "ustensil":
+        //filter the secondary array this.ustensilList with the input value
+        this.ustensilList = this.ustensilList.filter((el) =>
+          el.toLowerCase().includes(inputResult)
+        );
+        break;
+    }
   }
 
   //if have more than 3 characters or filterClickedElement array is not empty. we filter the result of filterSearchMenu(). Else, if have nothing in the search input. Send to elementFilter()
@@ -164,7 +228,7 @@ class FilterSearch {
   }
   //Create a secondary array for ingredient.Flatmap will take all ingredients and put them in the same array. Filter will delete all element who is write more than 1 time. Sort in alphabetical order
   filteredMenusIngredient() {
-    this.ingredientList = this.filteredList
+    this.ingredientList = this.filteredList //we use this.filteredList for keep only filtered elements
       .flatMap((data) => data.ingredients.flatMap((ing) => ing.ingredient))
       .filter((value, index, self) => self.indexOf(value) === index)
       .sort((a, b) => a.localeCompare(b));
@@ -172,7 +236,7 @@ class FilterSearch {
   }
   //Create a secondary array for device. Map will take all devices. Filter will delete all element who is write more than 1 time. Sort in alphabetical order
   filteredMenusDevice() {
-    this.deviceList = this.filteredList
+    this.deviceList = this.filteredList //we use this.filteredList for keep only filtered elements
       .map((data) => data.appliance)
       .filter((value, index, self) => self.indexOf(value) === index)
       .sort((a, b) => a.localeCompare(b));
@@ -180,7 +244,7 @@ class FilterSearch {
   }
   //Create a secondary array for ingredient.Flatmap will take all ingredients and put them in the same array. Filter will delete all element who is write more than 1 time. Sort in alphabetical order
   filteredMenusUstensil() {
-    this.ustensilList = this.filteredList
+    this.ustensilList = this.filteredList //we use this.filteredList for keep only filtered elements
       .flatMap((data) => data.ustensils)
       .filter((value, index, self) => self.indexOf(value) === index)
       .sort((a, b) => a.localeCompare(b));
@@ -216,6 +280,7 @@ class FilterSearch {
   listenClickOnList() {
     const dropdownItem = document.querySelectorAll(".dropdown_item");
     const dropdownInput = document.querySelectorAll(".dropdown_input");
+
     dropdownItem.forEach((button) => {
       button.addEventListener("click", (e) => {
         //get id of parentelement of clicked item (so the <ul>) and get textcontent of clicked element
@@ -226,7 +291,7 @@ class FilterSearch {
           input.value = "";
           this.itemInputValue = input.value;
         });
-
+        //send to the dom
         if (!this.filterClickedElement.includes(item)) {
           this.filterClickedElement.push(item);
           this.dropdowncard.displayClickedElement(
@@ -236,6 +301,7 @@ class FilterSearch {
             this.deviceList,
             this.ustensilList
           );
+          //send to filter
           this.searchFilter();
         }
       });
@@ -266,7 +332,7 @@ class FilterSearch {
   listenSearchInput() {
     this.search.addEventListener("input", (e) => {
       this.searchInputValue = e.target.value;
-      this.filteredList = this.filterSearchMenu();
+      this.filteredList = this.filterSearchMenu(); //filter menus
       this.searchFilter();
     });
   }
