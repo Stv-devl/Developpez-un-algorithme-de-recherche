@@ -85,7 +85,7 @@ class FilterSearch {
     this.closeItemLogo();
   }
 
-  //V2 FILTER SEARCH, When we do search in the search bar. ListArray (the list of 50 menus) is filtered with the input result. we will filter every part of array who have text.
+  //V1 FILTER SEARCH, When we do search in the search bar. ListArray (the list of 50 menus) is filtered with the input result. we will filter every part of array who have text.
   filterSearchMenu() {
     //if user write uppercase in input it will become lowercase
     const inputResult = this.searchInputValue.toLowerCase();
@@ -104,6 +104,7 @@ class FilterSearch {
     );
     return filterMenus;
   }
+
   //if have more than 3 characters or filterClickedElement array is not empty. we filter the result of filterSearchMenu(). Else, if have nothing in the search input. Send to elementFilter()
   filteredWitchClickedArray() {
     //every for read if have more than 1 element in the array
