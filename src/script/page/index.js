@@ -27,15 +27,6 @@ class App {
     const filtersearch = new FilterSearch();
     filtersearch.launchFilter(menus);
   }
-  //We get return from filter and launch the display.
-  /*launchingFiltered(filteredMenus) {
-    this.filteredMenus = filteredMenus;
-    this.displayMenu();
-    if (!filteredMenus.length > 0) {
-      this.displayErrorMessage();
-    } else return;
-  }*/
-
   ///We get return from filter and launch the display, send filtred menus to DOM template
   displayMenu(filteredMenus) {
     //implement array this.filteredMenus
