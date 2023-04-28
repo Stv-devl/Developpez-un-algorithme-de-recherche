@@ -1,8 +1,8 @@
 //api
 import MenuApi from "../api/api.js";
 //filter
-/*import FilterSearch from "../filter/searchv1.js";*/
-import FilterSearch from "../filter/searchv2.js";
+import FilterSearch from "../filter/searchv1.js";
+/*import FilterSearch from "../filter/searchv2.js";*/
 //template
 import MenuCard from "../template/menuCardTemplate.js";
 import IngredientCard from "../template/ingredientCardTemplate.js";
@@ -15,9 +15,7 @@ class App {
     this.dataApi = new MenuApi("./src/data/menu.json");
     this.menusCards = document.querySelector(".menus_cards");
     this.errorMessage = document.querySelector(".error_message ");
-    this.menus = [];
     this.filteredMenus = [];
-    this.test = new MenuCard();
   }
 
   //Get data from APY, array this.menus and this.filteredMenus implemented with data.
@@ -27,12 +25,11 @@ class App {
     const filtersearch = new FilterSearch();
     filtersearch.launchFilter(menus);
   }
-
   ///We get return from filter and launch the display, send filtred menus to DOM template
   displayMenu(filteredMenus) {
     //implement array this.filteredMenus
     this.filteredMenus = filteredMenus;
-    //deletes span and artcile created when we launch the method
+    //deletes span created && deletes article when we launch the method
     this.errorMessage.innerHTML = "";
     this.menusCards.innerHTML = "";
     //display the menus objects, send to dom display. For each menu, launch MenuCard Class, open dom display

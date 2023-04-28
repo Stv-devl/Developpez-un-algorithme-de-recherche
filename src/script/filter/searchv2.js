@@ -6,13 +6,10 @@ import DropDownCard from "../template/dropDownCardTemplate.js";
 class FilterSearch {
   constructor() {
     this.search = document.getElementById("search");
-    this.ingredientItem = document.getElementById("ingredientItem");
-    this.deviceItem = document.getElementById("deviceItem");
-    this.ustensilItem = document.getElementById("ustensilItem");
-    this.listArray = []; // array with the list of menus from Api
-    this.filteredList = []; // array with the filtered list of menus
-    this.filterClickedElement = []; // array with clicked tag inside
-    this.ingredientList = []; // array for ingredient tag
+    this.listArray = []; //array with the list of menus from Api
+    this.filteredList = []; //array with the filtered list of menus
+    this.filterClickedElement = []; //array with clicked tag inside
+    this.ingredientList = []; //array for ingredient tag
     this.deviceList = []; //array for device tag
     this.ustensilList = []; //array for ustensil tag
     this.itemInputValue = ""; //to save the 3 tags inputs
@@ -135,6 +132,26 @@ class FilterSearch {
     return filterMenus;
   }
 
+  //V1 FILTER SEARCH//
+  //When we do search in the search bar. ListArray (the list of 50 menus) is filtered with the input result. we will filter every part of array who have text.
+  filterSearchMenu() {
+    //if user write uppercase in input it will become lowercase
+    const inputResult = this.searchInputValue.toLowerCase();
+    //filter description, appliance, name, ustensils, ingredients with inputResult
+    const filterMenus = this.listArray.filter(
+      (el) =>
+        el.description.toLowerCase().includes(inputResult) ||
+        el.appliance.toLowerCase().includes(inputResult) ||
+        el.name.toLowerCase().includes(inputResult) ||
+        el.ustensils.some((element) =>
+          element.toLowerCase().includes(inputResult)
+        ) ||
+        el.ingredients.some((ingr) =>
+          ingr.ingredient.toLowerCase().includes(inputResult)
+        )
+    );
+    return filterMenus;
+  }
   //if have more than 3 characters or filterClickedElement array is not empty. we filter the result of filterSearchMenu(). Else, if have nothing in the search input. Send to elementFilter()
   filteredWitchClickedArray() {
     //every for read if have more than 1 element in the array
@@ -167,6 +184,7 @@ class FilterSearch {
       )
     );
   }
+
   //filter item dropwdown elements when we write in the input the tags element will be filtered
   filterWithItemInput() {
     const inputResult = this.itemInputValue.toLowerCase();
