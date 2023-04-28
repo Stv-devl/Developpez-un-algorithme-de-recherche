@@ -15,9 +15,7 @@ class App {
     this.dataApi = new MenuApi("./src/data/menu.json");
     this.menusCards = document.querySelector(".menus_cards");
     this.errorMessage = document.querySelector(".error_message ");
-    this.menus = [];
     this.filteredMenus = [];
-    this.test = new MenuCard();
   }
 
   //Get data from APY, array this.menus and this.filteredMenus implemented with data.
