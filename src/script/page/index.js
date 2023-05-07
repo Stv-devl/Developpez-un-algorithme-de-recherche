@@ -34,7 +34,6 @@ class App {
     this.menusCards.innerHTML = "";
     //display the menus objects, send to dom display. For each menu, launch MenuCard Class, open dom display
     if (!filteredMenus.length > 0) {
-      this.menusCards.innerHTML = "";
       this.displayErrorMessage();
     } else {
       this.filteredMenus.forEach((menu) => {

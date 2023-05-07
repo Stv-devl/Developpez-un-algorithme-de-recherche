@@ -3,6 +3,7 @@ class IngredientCard {
     this.data = data;
   }
 
+  //ingredients display (in menu)
   displayIngredients() {
     const ingredientListWrapper = document.createElement("div");
     ingredientListWrapper.setAttribute("class", "ingredient_list_wrapper");
@@ -12,6 +13,7 @@ class IngredientCard {
     bold.setAttribute("class", "bold");
     bold.innerHTML += `${this.data.ingredient}`;
     ingredientDisplay.appendChild(bold);
+    //here we have to fixe for missing elements in the ingredients
     //if quantity not undefined const = this.data.quantity else empty
     const quantityDisplay =
       this.data.quantity != undefined ? `${this.data.quantity}` : "";
