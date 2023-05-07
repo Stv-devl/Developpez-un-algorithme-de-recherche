@@ -6,6 +6,9 @@ import DropDownCard from "../template/dropDownCardTemplate.js";
 class FilterSearch {
   constructor() {
     this.search = document.getElementById("search");
+    this.inputIngredient = document.getElementById("inputIngredient");
+    this.inputDevice = document.getElementById("inputDevice");
+    this.inputUstensil = document.getElementById("inputUstensil");
     this.listArray = []; //array with the list of menus from Api
     this.filteredList = []; //array with the filtered list of menus
     this.filterClickedElement = []; //array with clicked tag inside
@@ -14,7 +17,7 @@ class FilterSearch {
     this.ustensilList = []; //array for ustensil tag
     this.itemInputValue = ""; //to save the 3 tags inputs
     this.searchInputValue = ""; //to save search input data
-    this.itemChoice; //for selected the input user is writing
+    this.itemChoice; //for selected input where the user writing
     this.app = new App(); //activate App class from index.js
     this.dropdowncard = new DropDownCard(); //activate DropDownCard class from template
   }
@@ -22,6 +25,7 @@ class FilterSearch {
   searchFilter() {
     //if have something write in the tag input
     if (this.itemInputValue.length >= 1) {
+      this.launchThisFilteredFilter(); //get the array back when we delete the input
       this.launchTheTagInputFilter(); //tag input filter
     }
     //if have something write in the tag input and in the search bar
@@ -54,7 +58,7 @@ class FilterSearch {
 
   //method to launch the principal filter with this.filteredArray
   launchThisFilteredFilter() {
-    this.launchTagArrays(); //method to filter the 3 tags array with this.filteredList
+    this.filterTagArrays(); //method to filter the 3 tags array with this.filteredList
     this.launchElementListDisplay(); //display the 3 tags array
     this.launchDisplayMenu(); //method to send in the dom the menu list
     this.addEventListenerClickedItem(); //listen the addeventlistener
@@ -65,12 +69,7 @@ class FilterSearch {
     this.launchElementListDisplay(); //we display the new tags array
     this.addEventListenerClickedItem(); //we listen the addeventlisteners on click
   }
-  //launch the 3 tags arrays filter
-  launchTagArrays() {
-    this.filteredMenusIngredient();
-    this.filteredMenusDevice();
-    this.filteredMenusUstensil();
-  }
+
   //launch the display of tag array in the dom
   launchElementListDisplay() {
     this.dropdowncard.elementListDisplay(
@@ -167,53 +166,40 @@ class FilterSearch {
         break;
     }
   }
-  //Create a secondary array for ingredient.Flatmap will take all ingredients and put them in the same array. Filter will delete all element who is write more than 1 time. Sort in alphabetical order
-  filteredMenusIngredient() {
-    this.ingredientList = this.filteredList //we use this.filteredList for keep only filtered elements
-      .flatMap((data) => data.ingredients.flatMap((ing) => ing.ingredient))
-      .filter((value, index, self) => self.indexOf(value) === index)
-      .sort((a, b) => a.localeCompare(b));
-    return this.ingredientList;
-  }
-  //Create a secondary array for device. Map will take all devices. Filter will delete all element who is write more than 1 time. Sort in alphabetical order
-  filteredMenusDevice() {
-    this.deviceList = this.filteredList //we use this.filteredList for keep only filtered elements
-      .map((data) => data.appliance)
-      .filter((value, index, self) => self.indexOf(value) === index)
-      .sort((a, b) => a.localeCompare(b));
-    return this.deviceList;
-  }
-  //Create a secondary array for ingredient.Flatmap will take all ingredients and put them in the same array. Filter will delete all element who is write more than 1 time. Sort in alphabetical order
-  filteredMenusUstensil() {
-    this.ustensilList = this.filteredList //we use this.filteredList for keep only filtered elements
-      .flatMap((data) => data.ustensils)
-      .filter((value, index, self) => self.indexOf(value) === index)
-      .sort((a, b) => a.localeCompare(b));
-    return this.ustensilList;
+  //Create a secondary array for ingredient, device, and ustensil.Flatmap will take all ingredients and put them in the same array.
+  filterTagArrays() {
+    this.ingredientList = this.filteredList.flatMap((data) =>
+      data.ingredients.map((ing) => ing.ingredient)
+    );
+    this.deviceList = this.filteredList.map((data) => data.appliance);
+    this.ustensilList = this.filteredList.flatMap((data) => data.ustensils);
+
+    this.ingredientList = this.removeDuplicates(this.ingredientList);
+    this.deviceList = this.removeDuplicates(this.deviceList);
+    this.ustensilList = this.removeDuplicates(this.ustensilList);
   }
 
-  //addeventlistener for get the tag inputs, when we write in a input the 2 we empty the 2 others one. We add the value to the itemChoice variable
+  //use Set methode for remove duplicate elements, sort for filter in alphabetical order
+  removeDuplicates(tag) {
+    return [...new Set(tag)].sort();
+  }
+
+  //addeventlistener for get the tag inputs, when we write in a input we empty the 2 others one. We add the value to the itemChoice variable
   listenItemInput() {
-    inputIngredient.addEventListener("input", (e) => {
-      this.itemInputValue = e.target.value;
-      inputDevice.value = "";
-      inputUstensil.value = "";
-      this.itemChoice = "ingredient";
-      this.searchFilter();
-    });
-    inputDevice.addEventListener("input", (e) => {
-      this.itemInputValue = e.target.value;
-      inputIngredient.value = "";
-      inputUstensil.value = "";
-      this.itemChoice = "device";
-      this.searchFilter();
-    });
-    inputUstensil.addEventListener("input", (e) => {
-      this.itemInputValue = e.target.value;
-      inputIngredient.value = "";
-      inputDevice.value = "";
-      this.itemChoice = "ustensil";
-      this.searchFilter();
+    const allInput = [
+      this.inputIngredient,
+      this.inputDevice,
+      this.inputUstensil,
+    ];
+    allInput.forEach((input) => {
+      input.addEventListener("input", (e) => {
+        allInput.forEach((tagInput) => {
+          tagInput != input ? (tagInput.value = "") : null;
+        }); //we empty the 2 others inputs
+        this.itemInputValue = e.target.value;
+        this.itemChoice = e.target.id.substring(5).toLowerCase();
+        this.searchFilter();
+      });
     });
   }
 
@@ -234,14 +220,8 @@ class FilterSearch {
         });
         //send to the dom
         if (!this.filterClickedElement.includes(item)) {
-          this.filterClickedElement.push(item);
-          this.dropdowncard.displayClickedElement(
-            item,
-            getUlId,
-            this.ingredientList,
-            this.deviceList,
-            this.ustensilList
-          );
+          this.filterClickedElement.push(item); //add item in cliked element array
+          this.dropdowncard.displayClickedElement(item, getUlId);
           //send to filter
           this.searchFilter();
         }
@@ -265,9 +245,7 @@ class FilterSearch {
   //methode for delete an element from this.filterClickedElement array
   removeItemFromArray(array, item) {
     let index = array.indexOf(item);
-    if (index > -1) {
-      array.splice(index, 1);
-    }
+    index > -1 ? array.splice(index, 1) : null;
   }
   //AddEventlisten for the search bar. We save the input value in a variable, the array this.filteredList will be = to the filter this.filterSearchMenu(); we launch search filter
   listenSearchInput() {

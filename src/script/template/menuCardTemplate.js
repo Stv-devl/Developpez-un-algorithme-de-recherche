@@ -2,7 +2,7 @@ class MenuCard {
   constructor(data) {
     this.data = data;
   }
-
+  //display menu card (without the list of ingredients)
   displayMenuCard() {
     //html elements
     const article = document.createElement("article");
