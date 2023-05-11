@@ -13,7 +13,7 @@ class IngredientCard {
     bold.setAttribute("class", "bold");
     bold.innerHTML += `${this.data.ingredient}`;
     ingredientDisplay.appendChild(bold);
-    //here we have to fixe for missing elements in the ingredients
+    //here we have to fix for missing elements in the ingredients
     //if quantity not undefined const = this.data.quantity else empty
     const quantityDisplay =
       this.data.quantity != undefined ? `${this.data.quantity}` : "";
