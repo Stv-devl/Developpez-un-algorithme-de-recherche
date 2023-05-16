@@ -24,12 +24,12 @@ class FilterSearch {
   //This method is used to manage filters of the search bar, tag inputs, search on click on Tag...etc.
   searchFilter() {
     //if have something write in the tag input
-    if (this.itemInputValue.length >= 1) {
-      this.launchThisFilteredFilter(); //get the array back when we delete the input
+    if (this.itemInputValue.length >= 1 && this.searchInputValue.length < 3) {
       this.launchTheTagInputFilter(); //tag input filter
+      this.filterTagArrays(); //get the array back when we delete the input
     }
     //if have something write in the tag input and in the search bar
-    if (this.itemInputValue.length >= 1 && this.searchInputValue.length >= 1) {
+    if (this.itemInputValue.length >= 1 && this.searchInputValue.length >= 3) {
       this.launchThisFilteredFilter(); //this.filteredList array filter
       this.launchTheTagInputFilter(); //tags input filter
     }
@@ -87,24 +87,46 @@ class FilterSearch {
     this.listenClickOnList();
     this.closeItemLogo();
   }
-  //V1 FILTER SEARCH//
-  //When we do search in the search bar. ListArray (the list of 50 menus) is filtered with the input result. we will filter every part of array who have text.
+  //V2 FILTER SEARCH//
+  //When we do search in the search bar.
+  //ListArray (the list of 50 menus) is filtered with the input result.
+  //we will filter every part of array who have text. In this V2 we use boucle for & indexOf()
   filterSearchMenu() {
     //if user write uppercase in input it will become lowercase
     const inputResult = this.searchInputValue.toLowerCase();
-    //filter description, appliance, name, ustensils, ingredients with inputResult
-    const filterMenus = this.listArray.filter(
-      (el) =>
-        el.description.toLowerCase().includes(inputResult) ||
-        el.appliance.toLowerCase().includes(inputResult) ||
-        el.name.toLowerCase().includes(inputResult) ||
-        el.ustensils.some((element) =>
-          element.toLowerCase().includes(inputResult)
-        ) ||
-        el.ingredients.some((ingr) =>
-          ingr.ingredient.toLowerCase().includes(inputResult)
-        )
-    );
+    const filterMenus = [];
+
+    for (let i = 0; i < this.listArray.length; i++) {
+      const data = this.listArray[i];
+
+      //if the elements match with the input result so we push them into the array
+      if (
+        data.description.toLowerCase().indexOf(inputResult) !== -1 ||
+        data.appliance.toLowerCase().indexOf(inputResult) !== -1 ||
+        data.name.toLowerCase().indexOf(inputResult) !== -1
+      ) {
+        filterMenus.push(data);
+        continue; //continue for launch the others loop
+      }
+      //for secondary array : ustensils
+      for (let j = 0; j < data.ustensils.length; j++) {
+        const ustensilElement = data.ustensils[j];
+        //if the elements match with the input result so we push them into the array
+        if (ustensilElement.toLowerCase().indexOf(inputResult) !== -1) {
+          filterMenus.push(data);
+          break; //to close instruction
+        }
+      }
+      //for secondary array : ingredient
+      for (let x = 0; x < data.ingredients.length; x++) {
+        const ingredientElement = data.ingredients[x].ingredient;
+        //if the elements match with the input result so we push them into the array
+        if (ingredientElement.toLowerCase().indexOf(inputResult) !== -1) {
+          filterMenus.push(data);
+          break; //to close instruction
+        }
+      }
+    }
     return filterMenus;
   }
 
@@ -232,7 +254,7 @@ class FilterSearch {
   closeItemLogo() {
     const itemLogo = document.querySelectorAll(".item_logo");
     itemLogo.forEach((button) => {
-      button.addEventListener("click", (e) => {
+      button.addEventListener("click", () => {
         //we remove item in html and send array and item to the remove method. ItemValue will be the tag textcontent from the array
         const ItemValue = button.parentElement.children[0].textContent;
         button.parentElement.remove();

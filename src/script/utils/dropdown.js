@@ -7,7 +7,7 @@ class DropDown {
   //at click on each button launch closePopup or openPopup
   ingredientDropDown() {
     this.buttons.forEach((button) => {
-      button.addEventListener("click", (e) => {
+      button.addEventListener("click", () => {
         const dropdownContainer = button.parentElement.parentElement;
         const dropdownIcone = button.parentElement.children[1];
 
@@ -18,7 +18,7 @@ class DropDown {
       });
     });
     this.buttonClose.forEach((button) => {
-      button.addEventListener("click", (e) => {
+      button.addEventListener("click", () => {
         const dropdownContainer = button.parentElement.parentElement;
         if (dropdownContainer.classList.contains("active")) {
           this.closePopup(dropdownContainer, button);
