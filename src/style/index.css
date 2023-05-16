@@ -181,7 +181,11 @@ main .search_form .display_filter_item .filter_item_wrapper .item_text_display {
   /*******************************************/
 }
 @media screen and (max-width: 555px) {
-  main .search_form .display_filter_item .filter_item_wrapper .item_text_display {
+  main
+    .search_form
+    .display_filter_item
+    .filter_item_wrapper
+    .item_text_display {
     font-size: 12px;
   }
 }
@@ -260,10 +264,18 @@ main .menu_dropdown .dropbox_container .dropbox_wrapper .dropdown_input {
   /********************media*******************/
   /*******************************************/
 }
-main .menu_dropdown .dropbox_container .dropbox_wrapper .dropdown_input::-moz-placeholder {
+main
+  .menu_dropdown
+  .dropbox_container
+  .dropbox_wrapper
+  .dropdown_input::-moz-placeholder {
   color: #e7e7e7;
 }
-main .menu_dropdown .dropbox_container .dropbox_wrapper .dropdown_input::placeholder {
+main
+  .menu_dropdown
+  .dropbox_container
+  .dropbox_wrapper
+  .dropdown_input::placeholder {
   color: #e7e7e7;
 }
 @media screen and (max-width: 555px) {
@@ -316,7 +328,7 @@ main .menu_dropdown .dropbox_container.active .item_list {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   -moz-column-gap: 20px;
-       column-gap: 20px;
+  column-gap: 20px;
   row-gap: 10px;
   color: #e7e7e7;
   padding: 10px 20px 10px 20px;
@@ -330,7 +342,7 @@ main .menu_dropdown .dropbox_container.active .item_list {
   main .menu_dropdown .dropbox_container.active .item_list {
     grid-template-columns: 1fr 1fr;
     -moz-column-gap: 5px;
-         column-gap: 5px;
+    column-gap: 5px;
     padding: 8px;
   }
 }
@@ -338,7 +350,7 @@ main .menu_dropdown .dropbox_container.active .item_list {
   main .menu_dropdown .dropbox_container.active .item_list {
     grid-template-columns: 1fr;
     -moz-column-gap: 5px;
-         column-gap: 5px;
+    column-gap: 5px;
     padding: 5px;
   }
 }
@@ -359,7 +371,7 @@ main .menus_cards {
   display: grid;
   grid-template-columns: 31% 31% 31%;
   -moz-column-gap: 3.5%;
-       column-gap: 3.5%;
+  column-gap: 3.5%;
   row-gap: 50px;
   /********************media*******************/
   /*******************************************/
@@ -426,17 +438,33 @@ main .menus_cards article .receipt_container .receipt_wrapper {
   justify-content: space-between;
   overflow: hidden;
 }
-main .menus_cards article .receipt_container .receipt_wrapper .ingredient_wrapper {
+main
+  .menus_cards
+  article
+  .receipt_container
+  .receipt_wrapper
+  .ingredient_wrapper {
   display: flex;
   flex-direction: column;
   gap: 1px;
 }
-main .menus_cards article .receipt_container .receipt_wrapper .ingredient_wrapper .ingredientList {
+main
+  .menus_cards
+  article
+  .receipt_container
+  .receipt_wrapper
+  .ingredient_wrapper
+  .ingredientList {
   display: flex;
   flex-direction: row;
   gap: 2px;
 }
-main .menus_cards article .receipt_container .receipt_wrapper .menu_description {
+main
+  .menus_cards
+  article
+  .receipt_container
+  .receipt_wrapper
+  .menu_description {
   width: 50%;
   height: 85px;
   line-height: 14px;
@@ -475,4 +503,4 @@ main .error_message .error {
 
 /**********************************************************************/
 /*footer*/
-/**********************************************************************//*# sourceMappingURL=index.css.map */
+/**********************************************************************/ /*# sourceMappingURL=index.css.map */

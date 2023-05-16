@@ -24,12 +24,12 @@ class FilterSearch {
   //This method is used to manage filters of the search bar, tag inputs, search on click on Tag...etc.
   searchFilter() {
     //if have something write in the tag input
-    if (this.itemInputValue.length >= 1) {
-      this.launchThisFilteredFilter(); //get the array back when we delete the input
+    if (this.itemInputValue.length >= 1 && this.searchInputValue.length < 3) {
       this.launchTheTagInputFilter(); //tag input filter
+      this.filterTagArrays(); //get the array back when we delete the input
     }
     //if have something write in the tag input and in the search bar
-    if (this.itemInputValue.length >= 1 && this.searchInputValue.length >= 1) {
+    if (this.itemInputValue.length >= 1 && this.searchInputValue.length >= 3) {
       this.launchThisFilteredFilter(); //this.filteredList array filter
       this.launchTheTagInputFilter(); //tags input filter
     }
@@ -254,7 +254,7 @@ class FilterSearch {
   closeItemLogo() {
     const itemLogo = document.querySelectorAll(".item_logo");
     itemLogo.forEach((button) => {
-      button.addEventListener("click", (e) => {
+      button.addEventListener("click", () => {
         //we remove item in html and send array and item to the remove method. ItemValue will be the tag textcontent from the array
         const ItemValue = button.parentElement.children[0].textContent;
         button.parentElement.remove();

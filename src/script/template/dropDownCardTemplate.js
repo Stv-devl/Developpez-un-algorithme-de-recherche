@@ -47,6 +47,7 @@ class DropDownCard {
     const itemType = ["ingredientItem", "deviceItem", "ustensilItem"];
 
     itemList.forEach((itemList, index) => {
+      /*console.log(itemList);*/
       itemList.forEach((item) => {
         this.listDisplayDom(item, itemType[index]);
       });
