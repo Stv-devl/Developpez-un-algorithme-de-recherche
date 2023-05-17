@@ -44,8 +44,8 @@ class App {
         const ingredientWrapper = menuArticle.querySelector(
           ".ingredient_wrapper"
         );
-        /*console.log(menuArticle);*/
-        /*console.log(ingredientWrapper);*/
+        /*console.log(menuArticle);
+        console.log(ingredientWrapper);*/
         //for each menu.ingredients, launch the class and display the ingredients in the dom.
         menu.ingredients.forEach((ingredient) => {
           const ingredientCard = new IngredientCard(ingredient);
