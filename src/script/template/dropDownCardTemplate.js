@@ -55,7 +55,7 @@ class DropDownCard {
 
   //display the Item Lists in the dom
   listDisplayDom(item, itemType) {
-    console.log(item, itemType);
+    /* console.log(item, itemType);*/
     const dropdownItem = document.createElement("li");
     dropdownItem.setAttribute(
       "class",
@@ -63,7 +63,7 @@ class DropDownCard {
     );
     dropdownItem.innerHTML = item;
     //choose the appendChild in fonction of item type
-    console.log(this[itemType]);
+    /*console.log(this[itemType]);*/
     this[itemType].appendChild(dropdownItem);
   }
 }
