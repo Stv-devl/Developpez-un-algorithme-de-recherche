@@ -87,46 +87,24 @@ class FilterSearch {
     this.listenClickOnList();
     this.closeItemLogo();
   }
-  //V2 FILTER SEARCH//
-  //When we do search in the search bar.
-  //ListArray (the list of 50 menus) is filtered with the input result.
-  //we will filter every part of array who have text. In this V2 we use boucle for & indexOf()
+
+  //V1 FILTER SEARCH//
+  //When we do search in the search bar. ListArray (the list of 50 menus) is filtered with the input result. we will filter every part of array who have text.
   filterSearchMenu() {
     //if user write uppercase in input it will become lowercase
     const inputResult = this.searchInputValue.toLowerCase();
-    const filterMenus = [];
-
-    for (let i = 0; i < this.listArray.length; i++) {
-      const data = this.listArray[i];
-
-      //if the elements match with the input result so we push them into the array
-      if (
-        data.description.toLowerCase().indexOf(inputResult) !== -1 ||
-        data.appliance.toLowerCase().indexOf(inputResult) !== -1 ||
-        data.name.toLowerCase().indexOf(inputResult) !== -1
-      ) {
-        filterMenus.push(data);
-        continue; //continue for launch the others loop
-      }
-      //for secondary array : ustensils
-      for (let j = 0; j < data.ustensils.length; j++) {
-        const ustensilElement = data.ustensils[j];
-        //if the elements match with the input result so we push them into the array
-        if (ustensilElement.toLowerCase().indexOf(inputResult) !== -1) {
-          filterMenus.push(data);
-          break; //to close instruction
-        }
-      }
-      //for secondary array : ingredient
-      for (let x = 0; x < data.ingredients.length; x++) {
-        const ingredientElement = data.ingredients[x].ingredient;
-        //if the elements match with the input result so we push them into the array
-        if (ingredientElement.toLowerCase().indexOf(inputResult) !== -1) {
-          filterMenus.push(data);
-          break; //to close instruction
-        }
-      }
-    }
+    /*console.log(inputResult);*/
+    //filter description, appliance, name, ustensils, ingredients with inputResult
+    const filterMenus = this.listArray.filter(
+      (el) =>
+        /*console.log(el.description)*/
+        el.description.toLowerCase().includes(inputResult) ||
+        el.name.toLowerCase().includes(inputResult) ||
+        el.ingredients.some((ingr) =>
+          ingr.ingredient.toLowerCase().includes(inputResult)
+        )
+    );
+    /*console.log(filterMenus);*/
     return filterMenus;
   }
 
@@ -190,6 +168,8 @@ class FilterSearch {
   }
   //Create a secondary array for ingredient, device, and ustensil.Flatmap will take all ingredients and put them in the same array.
   filterTagArrays() {
+    /*console.log(data.ingredients)*/
+    /*console.log(ing.ingredient)*/
     this.ingredientList = this.filteredList.flatMap((data) =>
       data.ingredients.map((ing) => ing.ingredient)
     );
@@ -199,6 +179,8 @@ class FilterSearch {
     this.ingredientList = this.removeDuplicates(this.ingredientList);
     this.deviceList = this.removeDuplicates(this.deviceList);
     this.ustensilList = this.removeDuplicates(this.ustensilList);
+
+    /*console.log(this.ingredientList);*/
   }
 
   //use Set methode for remove duplicate elements, sort for filter in alphabetical order

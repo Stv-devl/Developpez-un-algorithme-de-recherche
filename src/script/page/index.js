@@ -1,8 +1,7 @@
 //api
 import MenuApi from "../api/api.js";
 //filter
-import FilterSearch from "../filter/searchv1.js";
-/*import FilterSearch from "../filter/searchv2.js";*/
+import FilterSearch from "../filter/search.js";
 //template
 import MenuCard from "../template/menuCardTemplate.js";
 import IngredientCard from "../template/ingredientCardTemplate.js";
@@ -44,8 +43,8 @@ class App {
         const ingredientWrapper = menuArticle.querySelector(
           ".ingredient_wrapper"
         );
-        /*console.log(menuArticle);*/
-        /*console.log(ingredientWrapper);*/
+        /*console.log(menuArticle);
+        console.log(ingredientWrapper);*/
         //for each menu.ingredients, launch the class and display the ingredients in the dom.
         menu.ingredients.forEach((ingredient) => {
           const ingredientCard = new IngredientCard(ingredient);

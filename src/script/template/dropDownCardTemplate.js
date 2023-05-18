@@ -47,7 +47,6 @@ class DropDownCard {
     const itemType = ["ingredientItem", "deviceItem", "ustensilItem"];
 
     itemList.forEach((itemList, index) => {
-      /*console.log(itemList);*/
       itemList.forEach((item) => {
         this.listDisplayDom(item, itemType[index]);
       });
@@ -56,6 +55,7 @@ class DropDownCard {
 
   //display the Item Lists in the dom
   listDisplayDom(item, itemType) {
+    console.log(item, itemType);
     const dropdownItem = document.createElement("li");
     dropdownItem.setAttribute(
       "class",
@@ -63,6 +63,7 @@ class DropDownCard {
     );
     dropdownItem.innerHTML = item;
     //choose the appendChild in fonction of item type
+    console.log(this[itemType]);
     this[itemType].appendChild(dropdownItem);
   }
 }
