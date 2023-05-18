@@ -102,20 +102,10 @@ class FilterSearch {
       //if the elements match with the input result so we push them into the array
       if (
         data.description.toLowerCase().indexOf(inputResult) !== -1 ||
-        data.appliance.toLowerCase().indexOf(inputResult) !== -1 ||
         data.name.toLowerCase().indexOf(inputResult) !== -1
       ) {
         filterMenus.push(data);
         continue; //continue for launch the others loop
-      }
-      //for secondary array : ustensils
-      for (let j = 0; j < data.ustensils.length; j++) {
-        const ustensilElement = data.ustensils[j];
-        //if the elements match with the input result so we push them into the array
-        if (ustensilElement.toLowerCase().indexOf(inputResult) !== -1) {
-          filterMenus.push(data);
-          break; //to close instruction
-        }
       }
       //for secondary array : ingredient
       for (let x = 0; x < data.ingredients.length; x++) {
